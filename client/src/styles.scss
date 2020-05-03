@@ -1,0 +1,26 @@
+// (Required) Import Bootstrap
+@import "./../node_modules/bootstrap/scss/_functions.scss";
+@import "./../node_modules/bootstrap/scss/_variables.scss";
+
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
+$primary-color: #152d4e;
+$secondary-color: #ff7d01;
+$tertiary-color: #ffffff;
+$danger: #ff1500;
+
+$theme-colors: (
+  primary: $primary-color,
+  secondary: $secondary-color,
+  danger: $danger,
+);
+
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+@import "./../node_modules/bootstrap/scss/bootstrap.scss";

@@ -1,0 +1,310 @@
+<nav class="navbar navbar-expand-md">
+  <a class="navbar-brand" href="#">
+    MyApp
+  </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbar"
+    aria-controls="navbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          type="button"
+          data-toggle="modal"
+          data-target="#signUp"
+          >Sign Up</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          type="button"
+          data-toggle="modal"
+          data-target="#signIn"
+          >Login</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div
+  class="modal fade"
+  id="signUp"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="signUpModel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="signUpModel">Sign Up</h2>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registerForm">
+          <div class="form-field">
+            <div class="row mb-2">
+              <div class="col-1 col__icon">
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+              </div>
+              <div class="col-11">
+                <div class="form-field__control">
+                  <input
+                    type="text"
+                    class="form-field__input"
+                    placeholder=" "
+                    [formControlName]="'email'"
+                  />
+                  <label for="email" class="form-field__label">Email</label>
+                  <div class="form-field__bar"></div>
+                </div>
+                <div
+                  *ngIf="
+                    registerForm.controls['email'].invalid &&
+                    (registerForm.controls['email'].dirty ||
+                      registerForm.controls['email'].touched)
+                  "
+                  class="invalid-feedback fade-in"
+                >
+                  <div *ngIf="registerForm.controls['email'].errors.required">
+                    Email field is required.
+                  </div>
+                  <div *ngIf="registerForm.controls['email'].errors.email">
+                    Email field must be a valid email address.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <div class="row">
+              <div class="col-1 col__icon">
+                <fa-icon [icon]="faLock"></fa-icon>
+              </div>
+              <div class="col-11">
+                <div class="form-field__control">
+                  <input
+                    type="password"
+                    class="form-field__input"
+                    placeholder=" "
+                    [formControlName]="'password'"
+                  />
+                  <label for="email" class="form-field__label">Password</label>
+                  <div class="form-field__bar"></div>
+                </div>
+                <div
+                  *ngIf="
+                    registerForm.controls['password'].invalid &&
+                    (registerForm.controls['password'].dirty ||
+                      registerForm.controls['password'].touched)
+                  "
+                  class="invalid-feedback fade-in"
+                >
+                  <div
+                    *ngIf="registerForm.controls['password'].errors.required"
+                  >
+                    Password field is required.
+                  </div>
+                  <div
+                    *ngIf="registerForm.controls['password'].errors.minlength"
+                  >
+                    Password field must be at least 4 characters long.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <div class="row">
+              <div class="col-1 col__icon">
+                <fa-icon [icon]="faLock"></fa-icon>
+              </div>
+              <div class="col-11">
+                <div class="form-field__control">
+                  <input
+                    type="password"
+                    class="form-field__input"
+                    placeholder=" "
+                    [formControlName]="'confirmedPassword'"
+                  />
+                  <label for="email" class="form-field__label"
+                    >Confirm password</label
+                  >
+                  <div class="form-field__bar"></div>
+                </div>
+                <div
+                  *ngIf="
+                    registerForm.controls['confirmedPassword'].invalid &&
+                    (registerForm.controls['confirmedPassword'].dirty ||
+                      registerForm.controls['confirmedPassword'].touched)
+                  "
+                  class="invalid-feedback fade-in"
+                >
+                  <div
+                    *ngIf="
+                      registerForm.controls['confirmedPassword'].errors.required
+                    "
+                  >
+                    Confirmed password field is required.
+                  </div>
+                </div>
+                <div *ngIf="registerForm.invalid" class="invalid-feedback">
+                  <div *ngIf="registerForm.errors?.doesNotMatch">
+                    Confirmed password does not match with password field.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Clear
+        </button>
+        <button type="button" class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="signIn"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="signInModel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="signInModel">Sign In</h2>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registerForm">
+          <div class="form-field">
+            <div class="row mb-2">
+              <div class="col-1 col__icon">
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+              </div>
+              <div class="col-11">
+                <div class="form-field__control">
+                  <input
+                    type="text"
+                    class="form-field__input"
+                    placeholder=" "
+                    [formControlName]="'email'"
+                  />
+                  <label for="email" class="form-field__label">Email</label>
+                  <div class="form-field__bar"></div>
+                </div>
+                <div
+                  *ngIf="
+                    registerForm.controls['email'].invalid &&
+                    (registerForm.controls['email'].dirty ||
+                      registerForm.controls['email'].touched)
+                  "
+                  class="invalid-feedback fade-in"
+                >
+                  <div *ngIf="registerForm.controls['email'].errors.required">
+                    Email field is required.
+                  </div>
+                  <div *ngIf="registerForm.controls['email'].errors.email">
+                    Email field must be a valid email address.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <div class="row">
+              <div class="col-1 col__icon">
+                <fa-icon [icon]="faLock"></fa-icon>
+              </div>
+              <div class="col-11">
+                <div class="form-field__control">
+                  <input
+                    type="password"
+                    class="form-field__input"
+                    placeholder=" "
+                    [formControlName]="'password'"
+                  />
+                  <label for="email" class="form-field__label">Password</label>
+                  <div class="form-field__bar"></div>
+                </div>
+                <div
+                  *ngIf="
+                    registerForm.controls['password'].invalid &&
+                    (registerForm.controls['password'].dirty ||
+                      registerForm.controls['password'].touched)
+                  "
+                  class="invalid-feedback fade-in"
+                >
+                  <div
+                    *ngIf="registerForm.controls['password'].errors.required"
+                  >
+                    Password field is required.
+                  </div>
+                  <div
+                    *ngIf="registerForm.controls['password'].errors.minlength"
+                  >
+                    Password field must be at least 4 characters long.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Clear
+        </button>
+        <button type="button" class="btn btn-primary">Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>

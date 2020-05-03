@@ -1,0 +1,165 @@
+@import "../../../styles.scss";
+
+nav {
+  background-color: $primary-color;
+  color: $tertiary-color;
+}
+
+a {
+  color: $tertiary-color;
+}
+
+fa-icon {
+  font-size: 1.5rem;
+}
+
+.col__icon {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+$animation-duration: 0.4s;
+
+@mixin label-inactive() {
+  font-size: 1rem;
+  transform: translateY(0);
+}
+
+@mixin label-active() {
+  font-size: 0.75rem;
+  transform: translateY(-14px);
+}
+
+.form-field {
+  display: block;
+  margin-bottom: 1rem;
+}
+.form-field__label {
+  @include label-active();
+  display: block;
+  font-weight: normal;
+  left: 0;
+  margin: 0;
+  padding-top: 1.1rem;
+  padding-left: 0.75rem;
+  position: absolute;
+  top: -0.2rem;
+  transition: all $animation-duration;
+  width: 100%;
+}
+.form-field__control {
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.form-field__bar {
+  border-bottom: 2px solid $primary-color;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  transform: scaleX(0);
+  transition: all $animation-duration;
+  width: 1%;
+}
+
+.form-field__input {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #999;
+  color: #333;
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  outline: 0;
+  padding: 0 12px 10px 12px;
+  width: 100%;
+
+  // IE 10-11
+  &:-ms-input-placeholder {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+  // All other browsers except Edge
+  &:placeholder-shown {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+  &:focus {
+    ~ .form-field__label {
+      color: $primary-color;
+      @include label-active();
+    }
+    ~ .form-field__bar {
+      border-bottom: 2px solid $primary-color;
+      transform: scaleX(150);
+    }
+  }
+}
+
+.invalid-feedback {
+  color: $danger;
+  display: block;
+  margin-left: 0.75rem;
+}
+
+.fade-in {
+  animation: fadeIn ease 0.5s;
+  -webkit-animation: fadeIn ease 0.5s;
+  -moz-animation: fadeIn ease 0.5s;
+  -o-animation: fadeIn ease 0.5s;
+  -ms-animation: fadeIn ease 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
