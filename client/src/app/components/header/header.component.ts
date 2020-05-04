@@ -8,9 +8,12 @@ import {
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { CompareFieldsValidator } from '../../utils/compareFields';
-import { SignUpRequestPayload } from '../../dto/signUpRequestPayload';
+import { UserRequestPayload } from '../../dto/userRequestPayload';
 import { AuthService } from '../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
+declare var $: any;
 
 @Component({
   selector: 'app-header',
@@ -20,7 +23,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HeaderComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
-  signUpRequestPayload: SignUpRequestPayload;
+  userRequestPayload: UserRequestPayload;
 
   faEnvelope = faEnvelope;
   faLock = faLock;
@@ -30,8 +33,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('signupForm') signupForm: ElementRef;
   @ViewChild('signinForm') signinForm: ElementRef;
 
-  constructor(private authService: AuthService, private toastr: ToastrService) {
-    this.signUpRequestPayload = {
+  @ViewChild('modal') modal: ElementRef;
+
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
+    this.userRequestPayload = {
       email: '',
       password: '',
     };
@@ -61,15 +70,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    console.log(this.modal.nativeElement);
+  }
 
   signUp() {
-    this.signUpRequestPayload.email = this.registerForm.get('email').value;
-    this.signUpRequestPayload.password = this.registerForm.get(
-      'password'
-    ).value;
+    this.userRequestPayload.email = this.registerForm.get('email').value;
+    this.userRequestPayload.password = this.registerForm.get('password').value;
 
-    this.authService.signup(this.signUpRequestPayload).subscribe(
+    this.authService.signup(this.userRequestPayload).subscribe(
       (data) => {
         console.log(data);
         this.registerForm.reset();
@@ -78,6 +87,24 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.signupForm.nativeElement.classList.remove('active', 'show');
         this.signinTab.nativeElement.classList.add('active');
         this.signinForm.nativeElement.classList.add('active', 'show');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  signIn() {
+    this.userRequestPayload.email = this.loginForm.get('email').value;
+    this.userRequestPayload.password = this.loginForm.get('password').value;
+
+    this.authService.signin(this.userRequestPayload).subscribe(
+      (data) => {
+        console.log(data);
+        this.registerForm.reset();
+        this.toastr.success(data.message);
+        $(this.modal.nativeElement).modal('hide');
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.log(error);

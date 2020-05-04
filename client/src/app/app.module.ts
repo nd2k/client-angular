@@ -7,17 +7,18 @@ import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  // { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   // { path: 'accountverification', component: ValidationEmailComponent },
 ];
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent],

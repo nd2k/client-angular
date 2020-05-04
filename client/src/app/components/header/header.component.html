@@ -42,6 +42,7 @@
 </nav>
 
 <div
+  #modal
   class="modal fade"
   id="sign"
   tabindex="-1"
@@ -324,6 +325,7 @@
               type="button"
               [disabled]="loginForm.invalid"
               class="btn btn-secondary btn-block btn-lg"
+              (click)="signIn()"
             >
               Sign In
             </button>
