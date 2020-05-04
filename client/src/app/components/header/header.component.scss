@@ -3,20 +3,35 @@
 nav {
   background-color: $primary-color;
   color: $tertiary-color;
+  & a {
+    color: $tertiary-color;
+  }
 }
 
-a {
-  color: $tertiary-color;
+.tab {
+  font-size: 1.6rem;
+  width: 50%;
+  text-align: center;
+}
+
+.modal-body {
+  padding-top: 3rem;
+  width: 90%;
 }
 
 fa-icon {
   font-size: 1.5rem;
+  color: $fiftary-color;
 }
 
 .col__icon {
   display: flex;
   align-items: center;
   justify-content: right;
+}
+
+.modal-body {
+  margin: auto;
 }
 
 $animation-duration: 0.4s;
@@ -28,7 +43,7 @@ $animation-duration: 0.4s;
 
 @mixin label-active() {
   font-size: 0.75rem;
-  transform: translateY(-14px);
+  transform: translateY(-1rem);
 }
 
 .form-field {
@@ -162,4 +177,8 @@ $animation-duration: 0.4s;
   100% {
     opacity: 1;
   }
+}
+
+.btn {
+  border-radius: 12px;
 }
