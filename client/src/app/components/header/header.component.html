@@ -255,18 +255,16 @@
                     </div>
                     <div
                       *ngIf="
-                        registerForm.controls['email'].invalid &&
-                        (registerForm.controls['email'].dirty ||
-                          registerForm.controls['email'].touched)
+                        loginForm.controls['email'].invalid &&
+                        (loginForm.controls['email'].dirty ||
+                          loginForm.controls['email'].touched)
                       "
                       class="invalid-feedback fade-in"
                     >
-                      <div
-                        *ngIf="registerForm.controls['email'].errors.required"
-                      >
+                      <div *ngIf="loginForm.controls['email'].errors.required">
                         Email field is required.
                       </div>
-                      <div *ngIf="registerForm.controls['email'].errors.email">
+                      <div *ngIf="loginForm.controls['email'].errors.email">
                         Email field must be a valid email address.
                       </div>
                     </div>
@@ -294,23 +292,19 @@
                     </div>
                     <div
                       *ngIf="
-                        registerForm.controls['password'].invalid &&
-                        (registerForm.controls['password'].dirty ||
-                          registerForm.controls['password'].touched)
+                        loginForm.controls['password'].invalid &&
+                        (loginForm.controls['password'].dirty ||
+                          loginForm.controls['password'].touched)
                       "
                       class="invalid-feedback fade-in"
                     >
                       <div
-                        *ngIf="
-                          registerForm.controls['password'].errors.required
-                        "
+                        *ngIf="loginForm.controls['password'].errors.required"
                       >
                         Password field is required.
                       </div>
                       <div
-                        *ngIf="
-                          registerForm.controls['password'].errors.minlength
-                        "
+                        *ngIf="loginForm.controls['password'].errors.minlength"
                       >
                         Password field must be at least 4 characters long.
                       </div>

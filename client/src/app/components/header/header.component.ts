@@ -70,9 +70,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    console.log(this.modal.nativeElement);
-  }
+  ngAfterViewInit(): void {}
 
   signUp() {
     this.userRequestPayload.email = this.registerForm.get('email').value;
@@ -108,6 +106,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       },
       (error) => {
         console.log(error);
+        this.toastr.error(error.error.errorMessage);
       }
     );
   }

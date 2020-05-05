@@ -11,10 +11,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { AuthGuardService } from './services/guard/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  // { path: 'accountverification', component: ValidationEmailComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
@@ -28,8 +30,10 @@ const appRoutes: Routes = [
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
+    NgxWebstorageModule.forRoot(),
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent],
+  exports: [RouterModule],
 })
 export class AppModule {}
