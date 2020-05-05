@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
   userRequestPayload: UserRequestPayload;
+  isAuthenticated: Boolean;
 
   faEnvelope = faEnvelope;
   faLock = faLock;
@@ -68,6 +69,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         Validators.minLength(4),
       ]),
     });
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   ngAfterViewInit(): void {}
@@ -102,7 +104,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.registerForm.reset();
         this.toastr.success(data.message);
         $(this.modal.nativeElement).modal('hide');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
         console.log(error);

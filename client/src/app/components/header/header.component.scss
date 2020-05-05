@@ -8,6 +8,15 @@ nav {
   }
 }
 
+.navbar {
+  & .active {
+    color: $sixtary-color !important;
+  }
+  & .nav-item {
+    font-size: 1.2rem;
+  }
+}
+
 .tab {
   font-size: 1.6rem;
   width: 50%;
