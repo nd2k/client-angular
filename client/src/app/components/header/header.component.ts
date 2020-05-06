@@ -123,7 +123,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.userRequestPayload.email = this.registerForm.get('email').value;
     this.userRequestPayload.password = this.registerForm.get('password').value;
     this.store.dispatch(new userActions.UserSignup(this.userRequestPayload));
-
     this.registerForm.reset();
     this.signupTab.nativeElement.classList.remove('active');
     this.signupForm.nativeElement.classList.remove('active', 'show');
@@ -135,8 +134,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.userRequestPayload.email = this.loginForm.get('email').value;
     this.userRequestPayload.password = this.loginForm.get('password').value;
     this.store.dispatch(new userActions.UserSignin(this.userRequestPayload));
-
-    this.registerForm.reset();
+    this.loginForm.reset();
     $(this.modal.nativeElement).modal('hide');
     this.router.navigate(['/dashboard']);
   }

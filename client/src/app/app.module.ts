@@ -51,7 +51,17 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     NgxWebstorageModule.forRoot(),
-    StoreModule.forRoot({ user: userReducer }),
+    StoreModule.forRoot(
+      { user: userReducer },
+      {
+        runtimeChecks: {
+          strictStateImmutability: false,
+          strictActionImmutability: false,
+          strictStateSerializability: false,
+          strictActionSerializability: false,
+        },
+      }
+    ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
