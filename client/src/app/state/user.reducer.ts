@@ -78,8 +78,9 @@ export function userReducer(
         ...state,
         isLoading: false,
         isLoaded: true,
-        isSignup: true,
+        isSignup: false,
         isAuthenticated: true,
+        isActive: true,
         user: {
           email: action.payload.user.email,
           authenticationToken: action.payload.user.authenticationToken,
@@ -124,7 +125,22 @@ export const getIsLoaded = createSelector(
   (state: UserState) => state.isLoaded
 );
 
-export const setIsLoading = createSelector(
+export const getIsLoading = createSelector(
   getUserFeatureState,
   (state: UserState) => state.isLoading
+);
+
+export const getIsSignup = createSelector(
+  getUserFeatureState,
+  (state: UserState) => state.isSignup
+);
+
+export const getIsActive = createSelector(
+  getUserFeatureState,
+  (state: UserState) => state.isActive
+);
+
+export const getError = createSelector(
+  getUserFeatureState,
+  (state: UserState) => state.error
 );

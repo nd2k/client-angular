@@ -9,14 +9,15 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { CompareFieldsValidator } from '../../utils/compareFields';
 import { UserRequestPayload } from '../../dto/userRequestPayload';
-import { AuthService } from '../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as userActions from '../../state/user.actions';
 import * as fromUser from '../../state/user.reducer';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/model/user.model';
+import { ErrorResponsePayload } from '../../dto/errorResponsePayload';
 
 declare var $: any;
 
@@ -29,11 +30,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
   userRequestPayload: UserRequestPayload;
+  user: User;
 
   faEnvelope = faEnvelope;
   faLock = faLock;
 
+  isActive$: Observable<boolean>;
+  isSignup$: Observable<boolean>;
   isAuthenticated$: Observable<boolean>;
+  user$: Observable<User>;
+  error$: Observable<ErrorResponsePayload>;
+  isActive: boolean;
+  isSignup: boolean;
+  isAuthenticated: boolean;
+  error: ErrorResponsePayload;
 
   @ViewChild('signupTab') signupTab: ElementRef;
   @ViewChild('signinTab') signinTab: ElementRef;
@@ -43,7 +53,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('modal') modal: ElementRef;
 
   constructor(
-    private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
     private store: Store
@@ -52,11 +61,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       email: '',
       password: '',
     };
-
-    this.isAuthenticated$ = this.store.pipe(
-      select(fromUser.getIsAuthenticated)
-    );
-    console.log(this.isAuthenticated$);
   }
 
   ngOnInit(): void {
@@ -82,8 +86,34 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       ]),
     });
 
-    this.isAuthenticated$.subscribe((state) => {
-      console.log('isAuthenticated', state);
+    this.user$ = this.store.select(fromUser.getUser);
+    this.isAuthenticated$ = this.store.select(fromUser.getIsAuthenticated);
+    this.isActive$ = this.store.select(fromUser.getIsActive);
+    this.isSignup$ = this.store.select(fromUser.getIsSignup);
+    this.error$ = this.store.select(fromUser.getError);
+
+    this.user$.subscribe((user) => {
+      this.user = user;
+      return user;
+    });
+
+    this.isAuthenticated$.subscribe((isAuthenticated) => {
+      if (isAuthenticated) {
+        this.toastr.success(this.user.message);
+      }
+      return isAuthenticated;
+    });
+
+    this.isSignup$.subscribe((isSignup) => {
+      if (isSignup) {
+        this.toastr.success(this.user.message);
+      }
+    });
+
+    this.error$.subscribe((error) => {
+      if (error) {
+        this.toastr.error(error.errorMessage);
+      }
     });
   }
 

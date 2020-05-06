@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Action, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth/auth.service';
@@ -21,7 +21,7 @@ export class UserEffect {
     mergeMap((action: userActions.UserSignup) =>
       this.authService.signup(action.payload).pipe(
         map((user: User) => new userActions.UserSignupSuccess({ user })),
-        catchError((error) => of(new userActions.UserSignupFail({ error })))
+        catchError((error) => of(new userActions.UserSignupFail(error)))
       )
     )
   );
@@ -32,9 +32,7 @@ export class UserEffect {
     mergeMap((action: userActions.UserSignin) =>
       this.authService.signin(action.payload).pipe(
         map((user: User) => new userActions.UserSigninSuccess({ user })),
-        catchError((error: ErrorResponsePayload) =>
-          of(new userActions.UserSigninFail({ error }))
-        )
+        catchError((error) => of(new userActions.UserSigninFail(error)))
       )
     )
   );
