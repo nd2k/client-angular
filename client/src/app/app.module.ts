@@ -14,6 +14,12 @@ import { HomeComponent } from './home/home.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { AuthGuardService } from './services/guard/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { userReducer } from './state/user.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffect } from './state/user.effects';
 
 const appRoutes: Routes = [
   {
@@ -45,6 +51,12 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     NgxWebstorageModule.forRoot(),
+    StoreModule.forRoot({ user: userReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    EffectsModule.forRoot([UserEffect]),
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],

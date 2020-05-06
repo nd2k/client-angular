@@ -13,6 +13,11 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
+import { Store, select } from '@ngrx/store';
+import * as userActions from '../../state/user.actions';
+import * as fromUser from '../../state/user.reducer';
+import { Observable } from 'rxjs';
+
 declare var $: any;
 
 @Component({
@@ -24,10 +29,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
   userRequestPayload: UserRequestPayload;
-  isAuthenticated: Boolean;
 
   faEnvelope = faEnvelope;
   faLock = faLock;
+
+  isAuthenticated$: Observable<boolean>;
 
   @ViewChild('signupTab') signupTab: ElementRef;
   @ViewChild('signinTab') signinTab: ElementRef;
@@ -39,12 +45,18 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     private authService: AuthService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {
     this.userRequestPayload = {
       email: '',
       password: '',
     };
+
+    this.isAuthenticated$ = this.store.pipe(
+      select(fromUser.getIsAuthenticated)
+    );
+    console.log(this.isAuthenticated$);
   }
 
   ngOnInit(): void {
@@ -69,7 +81,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         Validators.minLength(4),
       ]),
     });
-    this.isAuthenticated = this.authService.isAuthenticated();
+
+    this.isAuthenticated$.subscribe((state) => {
+      console.log('isAuthenticated', state);
+    });
   }
 
   ngAfterViewInit(): void {}
@@ -77,39 +92,22 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   signUp() {
     this.userRequestPayload.email = this.registerForm.get('email').value;
     this.userRequestPayload.password = this.registerForm.get('password').value;
+    this.store.dispatch(new userActions.UserSignup(this.userRequestPayload));
 
-    this.authService.signup(this.userRequestPayload).subscribe(
-      (data) => {
-        console.log(data);
-        this.registerForm.reset();
-        this.toastr.success(data.message);
-        this.signupTab.nativeElement.classList.remove('active');
-        this.signupForm.nativeElement.classList.remove('active', 'show');
-        this.signinTab.nativeElement.classList.add('active');
-        this.signinForm.nativeElement.classList.add('active', 'show');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.registerForm.reset();
+    this.signupTab.nativeElement.classList.remove('active');
+    this.signupForm.nativeElement.classList.remove('active', 'show');
+    this.signinTab.nativeElement.classList.add('active');
+    this.signinForm.nativeElement.classList.add('active', 'show');
   }
 
   signIn() {
     this.userRequestPayload.email = this.loginForm.get('email').value;
     this.userRequestPayload.password = this.loginForm.get('password').value;
+    this.store.dispatch(new userActions.UserSignin(this.userRequestPayload));
 
-    this.authService.signin(this.userRequestPayload).subscribe(
-      (data) => {
-        console.log(data);
-        this.registerForm.reset();
-        this.toastr.success(data.message);
-        $(this.modal.nativeElement).modal('hide');
-        this.router.navigate(['/dashboard']);
-      },
-      (error) => {
-        console.log(error);
-        this.toastr.error(error.error.errorMessage);
-      }
-    );
+    this.registerForm.reset();
+    $(this.modal.nativeElement).modal('hide');
+    this.router.navigate(['/dashboard']);
   }
 }
