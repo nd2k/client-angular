@@ -1,0 +1,35 @@
+@import "../../styles.scss";
+
+.spinner {
+  position: absolute;
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+.loader {
+  z-index: 100;
+  margin: auto;
+  border: 0.3rem solid $secondary-color;
+  border-top: 0.3rem solid $primary-color;
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}

@@ -43,18 +43,11 @@
           type="button"
           data-toggle="modal"
           data-target="#sign"
-          (click)="signOut()"
           >Sign</a
         >
       </li>
       <li class="nav-item" *ngIf="isAuthenticated$ | async">
-        <a
-          class="nav-link"
-          type="button"
-          data-toggle="modal"
-          data-target="#sign"
-          >Sign Out</a
-        >
+        <a class="nav-link" type="button" (click)="signOut()">Sign Out</a>
       </li>
     </ul>
   </div>

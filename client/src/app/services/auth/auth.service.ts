@@ -8,13 +8,19 @@ import { LoginResponsePayload } from '../../dto/loginResponsePayload';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngrx/store';
 import * as userActions from '../../state/user.actions';
-import * as fromUser from '../../state/user.reducer';
+import { LogoutRequestPayload } from 'src/app/dto/logoutRequestPayload';
 
+/**
+ * @AuthService
+ * Service used to authenticate a user
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   helper = new JwtHelperService();
+  isAuthenticated$: Observable<boolean>;
+  isAuthenticated: boolean;
 
   constructor(
     private httpClient: HttpClient,
@@ -22,14 +28,24 @@ export class AuthService {
     private store: Store
   ) {}
 
-  signup(userRequestPayload: UserRequestPayload): Observable<any> {
+  /**
+   * @SignUp method
+   * @param userRequestPayload
+   * @returns the user's information in case of success or an error messge in case of failure
+   */
+  public signup(userRequestPayload: UserRequestPayload): Observable<any> {
     return this.httpClient.post(
       'http://localhost:3000/api/v1/auth/register',
       userRequestPayload
     );
   }
 
-  signin(userRequestPayload: UserRequestPayload): Observable<any> {
+  /**
+   * @SignIn method
+   * @param userRequestPayload
+   * @returns the user's information in case of success and store it in the localstorage or an error messge in case of failure
+   */
+  public signin(userRequestPayload: UserRequestPayload): Observable<any> {
     return this.httpClient
       .post<LoginResponsePayload>(
         'http://localhost:3000/api/v1/auth/login',
@@ -50,18 +66,35 @@ export class AuthService {
       );
   }
 
-  signout(userRequestPayload: UserRequestPayload): void {
-    console.log('signout', userRequestPayload);
+  /**
+   * @SignOut method
+   * @param userRequestPayload
+   * @returns deletion of data from localstorage
+   */
+  public signout(logoutRequestPayload: LogoutRequestPayload): Observable<any> {
+    return this.httpClient
+      .post('http://localhost:3000/api/v1/auth/logout', logoutRequestPayload)
+      .pipe(
+        map((data) => {
+          this.localStorage.clear('authenticationToken');
+          this.localStorage.clear('email');
+          this.localStorage.clear('refreshToken');
+          this.localStorage.clear('expiresAt');
+
+          return data;
+        })
+      );
   }
 
-  refreshToken() {
-    console.log('refreshtoken is fired');
-
+  /**
+   * @RefreshToken method
+   * @returns the user's information in case of success or redirect to home page in case of failure
+   */
+  public refreshToken() {
     const refreshTokenPayload = {
       refreshToken: this.getRefreshToken(),
       email: this.getEmail(),
     };
-    console.log(refreshTokenPayload);
     return this.httpClient
       .post<LoginResponsePayload>(
         'http://localhost:3000/api/v1/auth/refresh',
@@ -69,9 +102,8 @@ export class AuthService {
       )
       .pipe(
         tap((response) => {
-          console.log(response);
           this.localStorage.store(
-            'authorizationToken',
+            'authenticationToken',
             response.authenticationToken
           );
           this.localStorage.store('expiresAt', response.expiresAt);
@@ -79,36 +111,57 @@ export class AuthService {
       );
   }
 
-  getEmail(): string {
+  /**
+   * @GetEmail method
+   * @returns email string
+   */
+  public getEmail(): string {
     return this.localStorage.retrieve('email');
   }
 
-  getRefreshToken(): string {
+  /**
+   * @GetRefreshToken method
+   * @returns refreshToken string
+   */
+  public getRefreshToken(): string {
     return this.localStorage.retrieve('refreshToken');
   }
 
-  getJwtToken(): string {
+  /**
+   * @GetAuthenticationToken method
+   * @returns authenticationToken string
+   */
+  public getAuthenticationToken(): string {
     return this.localStorage.retrieve('authenticationToken');
   }
 
-  getExpiresAt(): Date {
+  /**
+   * @GetExpiresAt method
+   * @returns expiresAt date
+   */
+  public getExpiresAt(): Date {
     return this.localStorage.retrieve('expiresAt');
   }
 
-  public isAuthenticated(): Boolean {
-    const jwtToken: any | null = this.getJwtToken();
-    console.log(jwtToken);
+  /**
+   * @IsAuthenticated method
+   * @returns a boolean value
+   */
+  public getIsAuthenticated(): Boolean {
+    const jwtToken: any | null = this.getAuthenticationToken();
+    console.log('jwt expired?', this.helper.isTokenExpired(jwtToken));
+
     if (this.helper.isTokenExpired(jwtToken)) {
-      console.log(this.helper.isTokenExpired(jwtToken));
-      console.log('jwtexpired');
       try {
         this.store.dispatch(new userActions.UserRefreshToken());
-        console.log('refreshtoken');
-        return true;
+        return this.isAuthenticated;
       } catch {
-        (error) => console.log(error);
+        (error: Error) => {
+          console.log(error);
+        };
       }
     }
+    this.store.dispatch(new userActions.UserAuthenticate());
     return true;
   }
 }

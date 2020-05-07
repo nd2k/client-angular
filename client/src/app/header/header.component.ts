@@ -7,20 +7,26 @@ import {
 } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import { CompareFieldsValidator } from '../../utils/compareFields';
-import { UserRequestPayload } from '../../dto/userRequestPayload';
+import { CompareFieldsValidator } from './../utils/compareFields';
+import { UserRequestPayload } from '../dto/userRequestPayload';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
-import * as userActions from '../../state/user.actions';
-import * as fromUser from '../../state/user.reducer';
+import * as userActions from '../state/user.actions';
+import * as fromUser from '../state/user.reducer';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/model/user.model';
-import { ErrorResponsePayload } from '../../dto/errorResponsePayload';
+import { User } from '../model/user.model';
+import { ErrorResponsePayload } from '../dto/errorResponsePayload';
+import { LocalStorageService } from 'ngx-webstorage';
+import { LogoutRequestPayload } from '../dto/logoutRequestPayload';
+import { AuthService } from '../services/auth/auth.service';
 
 declare var $: any;
-
+/**
+ * @HeaderComponent
+ * Header component of the app
+ */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -31,17 +37,22 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
   userRequestPayload: UserRequestPayload;
   user: User;
+  logoutRequestPayload: LogoutRequestPayload;
 
   faEnvelope = faEnvelope;
   faLock = faLock;
 
   isActive$: Observable<boolean>;
-  isSignup$: Observable<boolean>;
   isAuthenticated$: Observable<boolean>;
+  isSignup$: Observable<boolean>;
+  isSignin$: Observable<boolean>;
+  isTokenRefreshed$: Observable<boolean>;
   user$: Observable<User>;
   error$: Observable<ErrorResponsePayload>;
   isActive: boolean;
   isSignup: boolean;
+  isSignin: boolean;
+  isTokenRefreshed: boolean;
   isAuthenticated: boolean;
   error: ErrorResponsePayload;
 
@@ -55,11 +66,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     private toastr: ToastrService,
     private router: Router,
-    private store: Store
+    private store: Store,
+    private localStorageService: LocalStorageService,
+    private authService: AuthService
   ) {
     this.userRequestPayload = {
       email: '',
       password: '',
+    };
+    this.logoutRequestPayload = {
+      email: '',
+      refreshToken: '',
     };
   }
 
@@ -88,20 +105,36 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     this.user$ = this.store.select(fromUser.getUser);
     this.isAuthenticated$ = this.store.select(fromUser.getIsAuthenticated);
+    this.isSignin$ = this.store.select(fromUser.getIsSignin);
     this.isActive$ = this.store.select(fromUser.getIsActive);
     this.isSignup$ = this.store.select(fromUser.getIsSignup);
+    this.isTokenRefreshed$ = this.store.select(fromUser.getTokenRefreshed);
     this.error$ = this.store.select(fromUser.getError);
+
+    // this.isAuthenticated$.subscribe((isAuthenticated) => {
+    //   if (!isAuthenticated) {
+    //     console.log('essai', !isAuthenticated);
+    //     console.log(this.authService.getIsAuthenticated());
+    //     return this.authService.getIsAuthenticated();
+    //   }
+    //   return isAuthenticated;
+    // });
 
     this.user$.subscribe((user) => {
       this.user = user;
       return user;
     });
 
-    this.isAuthenticated$.subscribe((isAuthenticated) => {
-      if (isAuthenticated) {
+    this.isTokenRefreshed$.subscribe((isTokenRefreshed) => {
+      this.isTokenRefreshed = isTokenRefreshed;
+      return isTokenRefreshed;
+    });
+
+    this.isSignin$.subscribe((isSignin) => {
+      if (isSignin) {
         this.toastr.success(this.user.message);
       }
-      return isAuthenticated;
+      return isSignin;
     });
 
     this.isSignup$.subscribe((isSignup) => {
@@ -111,7 +144,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
 
     this.error$.subscribe((error) => {
-      if (error) {
+      if (error && !this.isTokenRefreshed) {
         this.toastr.error(error.errorMessage);
       }
     });
@@ -119,7 +152,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {}
 
-  signUp() {
+  /**
+   * @SignUp method
+   * Method used to sign up the user
+   * Data are coming from the registerForm
+   */
+  public signUp(): void {
     this.userRequestPayload.email = this.registerForm.get('email').value;
     this.userRequestPayload.password = this.registerForm.get('password').value;
     this.store.dispatch(new userActions.UserSignup(this.userRequestPayload));
@@ -130,16 +168,34 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.signinForm.nativeElement.classList.add('active', 'show');
   }
 
-  signIn() {
+  /**
+   * @SignIn method
+   * Method used to sign in the user
+   * Data are coming from loginForm
+   */
+  public signIn(): void {
     this.userRequestPayload.email = this.loginForm.get('email').value;
     this.userRequestPayload.password = this.loginForm.get('password').value;
     this.store.dispatch(new userActions.UserSignin(this.userRequestPayload));
     this.loginForm.reset();
     $(this.modal.nativeElement).modal('hide');
-    this.router.navigate(['/dashboard']);
+    if (this.isAuthenticated) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
-  signOut() {
-    this.store.dispatch(new userActions.UserSignout(this.userRequestPayload));
+  public signOut(): void {
+    console.log('signout');
+
+    this.logoutRequestPayload.email = this.localStorageService.retrieve(
+      'email'
+    );
+    this.logoutRequestPayload.refreshToken = this.localStorageService.retrieve(
+      'refreshToken'
+    );
+
+    this.store.dispatch(new userActions.UserSignout(this.logoutRequestPayload));
   }
 }

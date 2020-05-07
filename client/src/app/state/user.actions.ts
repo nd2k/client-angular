@@ -3,6 +3,7 @@ import { User } from '../model/user.model';
 import { ErrorResponsePayload } from '../dto/errorResponsePayload';
 import { UserRequestPayload } from '../dto/userRequestPayload';
 import { LoginResponsePayload } from '../dto/loginResponsePayload';
+import { LogoutRequestPayload } from '../dto/logoutRequestPayload';
 
 export enum UserActionTypes {
   USER_SIGNUP = '[User] signup user',
@@ -17,6 +18,7 @@ export enum UserActionTypes {
   USER_REFRESHTOKEN = '[User] refreshToken user',
   USER_REFRESHTOKEN_SUCCESS = '[User] refreshToken user success',
   USER_REFRESHTOKEN_FAIL = '[User] refreshToken user fail',
+  USER_AUTHENTICATE = '[User] authenticate user from jwt',
 }
 
 export class UserSignup implements Action {
@@ -58,13 +60,13 @@ export class UserSigninFail implements Action {
 export class UserSignout implements Action {
   readonly type = UserActionTypes.USER_SIGNOUT;
 
-  constructor(public payload: UserRequestPayload) {}
+  constructor(public payload: LogoutRequestPayload) {}
 }
 
-export class UserSignoutSucces implements Action {
+export class UserSignoutSuccess implements Action {
   readonly type = UserActionTypes.USER_SIGNOUT_SUCCESS;
 
-  constructor(public payload: UserRequestPayload) {}
+  constructor() {}
 }
 
 export class UserSignoutFail implements Action {
@@ -91,6 +93,12 @@ export class UserRefreshTokenFail implements Action {
   constructor(public payload: { error: ErrorResponsePayload }) {}
 }
 
+export class UserAuthenticate implements Action {
+  readonly type = UserActionTypes.USER_AUTHENTICATE;
+
+  constructor() {}
+}
+
 export type UserAction =
   | UserSignin
   | UserSigninSuccess
@@ -99,8 +107,9 @@ export type UserAction =
   | UserSignupSuccess
   | UserSignupFail
   | UserSignout
-  | UserSignoutSucces
+  | UserSignoutSuccess
   | UserSignoutFail
   | UserRefreshToken
   | UserRefreshTokenSuccess
-  | UserRefreshTokenFail;
+  | UserRefreshTokenFail
+  | UserAuthenticate;

@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
@@ -20,19 +20,9 @@ import { environment } from '../environments/environment';
 import { userReducer } from './state/user.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffect } from './state/user.effects';
-
-const appRoutes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuardService],
-  },
-  { path: '**', redirectTo: '' },
-];
+import { SpinnerComponent } from './spinner/spinner.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './state/custom-router-serializer';
 
 @NgModule({
   declarations: [
@@ -40,6 +30,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     DashboardComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +40,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule,
     NgxWebstorageModule.forRoot(),
     StoreModule.forRoot(
       { user: userReducer },
@@ -67,6 +58,10 @@ const appRoutes: Routes = [
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([UserEffect]),
+    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],

@@ -9,8 +9,10 @@ export interface UserState {
   isAuthenticated: boolean;
   isActive: boolean;
   isSignup: boolean;
+  isSignin: boolean;
   isLoading: boolean;
   isLoaded: boolean;
+  isTokenRefreshed: boolean;
   error: ErrorResponsePayload;
 }
 
@@ -23,8 +25,10 @@ export const initialState: UserState = {
   isAuthenticated: false,
   isActive: false,
   isSignup: false,
+  isSignin: false,
   isLoading: false,
   isLoaded: false,
+  isTokenRefreshed: false,
   error: null,
 };
 
@@ -52,6 +56,7 @@ export function userReducer(
           expiresAt: action.payload.user.expiresAt,
           message: action.payload.user.message,
         },
+        error: null,
       };
     }
     case userActions.UserActionTypes.USER_SIGNUP_FAIL: {
@@ -60,6 +65,7 @@ export function userReducer(
         isLoading: false,
         isLoaded: false,
         isSignup: false,
+        user: null,
         error: {
           errorCode: action.payload.error.errorCode,
           errorMessage: action.payload.error.errorMessage,
@@ -79,8 +85,10 @@ export function userReducer(
         isLoading: false,
         isLoaded: true,
         isSignup: false,
+        isSignin: true,
         isAuthenticated: true,
         isActive: true,
+        isTokenRefreshed: false,
         user: {
           email: action.payload.user.email,
           authenticationToken: action.payload.user.authenticationToken,
@@ -88,6 +96,7 @@ export function userReducer(
           expiresAt: action.payload.user.expiresAt,
           message: action.payload.user.message,
         },
+        error: null,
       };
     }
     case userActions.UserActionTypes.USER_SIGNIN_FAIL: {
@@ -95,6 +104,40 @@ export function userReducer(
         ...state,
         isLoading: false,
         isLoaded: false,
+        isTokenRefreshed: false,
+        user: null,
+        error: {
+          errorCode: action.payload.error.errorCode,
+          errorMessage: action.payload.error.errorMessage,
+          httpStatus: action.payload.error.httpStatus,
+        },
+      };
+    }
+    case userActions.UserActionTypes.USER_SIGNOUT: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case userActions.UserActionTypes.USER_SIGNOUT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: true,
+        isSignup: false,
+        isSignin: false,
+        isAuthenticated: false,
+        isActive: false,
+        user: null,
+        error: null,
+      };
+    }
+    case userActions.UserActionTypes.USER_SIGNOUT_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: false,
+        user: null,
         error: {
           errorCode: action.payload.error.errorCode,
           errorMessage: action.payload.error.errorMessage,
@@ -116,6 +159,7 @@ export function userReducer(
         isSignup: false,
         isAuthenticated: true,
         isActive: true,
+        isTokenRefreshed: true,
         user: {
           email: action.payload.email,
           authenticationToken: action.payload.authenticationToken,
@@ -123,6 +167,7 @@ export function userReducer(
           expiresAt: action.payload.expiresAt,
           message: action.payload.message,
         },
+        error: null,
       };
     }
     case userActions.UserActionTypes.USER_REFRESHTOKEN_FAIL: {
@@ -130,11 +175,20 @@ export function userReducer(
         ...state,
         isLoading: false,
         isLoaded: false,
+        isAuthenticated: false,
+        isTokenRefreshed: true,
+        user: null,
         error: {
           errorCode: action.payload.error.errorCode,
           errorMessage: action.payload.error.errorMessage,
           httpStatus: action.payload.error.httpStatus,
         },
+      };
+    }
+    case userActions.UserActionTypes.USER_AUTHENTICATE: {
+      return {
+        ...state,
+        isAuthenticated: true,
       };
     }
     default: {
@@ -170,9 +224,19 @@ export const getIsSignup = createSelector(
   (state: UserState) => state.isSignup
 );
 
+export const getIsSignin = createSelector(
+  getUserFeatureState,
+  (state: UserState) => state.isSignin
+);
+
 export const getIsActive = createSelector(
   getUserFeatureState,
   (state: UserState) => state.isActive
+);
+
+export const getTokenRefreshed = createSelector(
+  getUserFeatureState,
+  (state: UserState) => state.isTokenRefreshed
 );
 
 export const getError = createSelector(

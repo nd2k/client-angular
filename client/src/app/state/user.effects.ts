@@ -37,16 +37,16 @@ export class UserEffect {
     )
   );
 
-  // @Effect()
-  // userSignout$: Observable<Action> = this.actions$.pipe(
-  //   ofType<userActions.UserSignout>(userActions.UserActionTypes.USER_SIGNOUT),
-  //   mergeMap((action: userActions.UserSignout) => {
-  //     this.authService.signout(action.payload).pipe(
-  //       map((user: User) => new userActions.UserSignoutSuccess({ user })),
-  //       catchError((error) => of(new userActions.UserSignoutFail(error)))
-  //     )
-  //   })
-  // )
+  @Effect()
+  userSignout$: Observable<Action> = this.actions$.pipe(
+    ofType<userActions.UserSignout>(userActions.UserActionTypes.USER_SIGNOUT),
+    mergeMap((action: userActions.UserSignout) =>
+      this.authService.signout(action.payload).pipe(
+        map(() => new userActions.UserSignoutSuccess()),
+        catchError((error) => of(new userActions.UserSignoutFail(error)))
+      )
+    )
+  );
 
   @Effect()
   userRefreshToken$: Observable<Action> = this.actions$.pipe(
