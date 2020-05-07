@@ -102,6 +102,41 @@ export function userReducer(
         },
       };
     }
+    case userActions.UserActionTypes.USER_REFRESHTOKEN: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case userActions.UserActionTypes.USER_REFRESHTOKEN_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: true,
+        isSignup: false,
+        isAuthenticated: true,
+        isActive: true,
+        user: {
+          email: action.payload.email,
+          authenticationToken: action.payload.authenticationToken,
+          refreshToken: action.payload.refreshToken,
+          expiresAt: action.payload.expiresAt,
+          message: action.payload.message,
+        },
+      };
+    }
+    case userActions.UserActionTypes.USER_REFRESHTOKEN_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: false,
+        error: {
+          errorCode: action.payload.error.errorCode,
+          errorMessage: action.payload.error.errorMessage,
+          httpStatus: action.payload.error.httpStatus,
+        },
+      };
+    }
     default: {
       return state;
     }

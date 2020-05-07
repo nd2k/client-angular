@@ -138,4 +138,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     $(this.modal.nativeElement).modal('hide');
     this.router.navigate(['/dashboard']);
   }
+
+  signOut() {
+    this.store.dispatch(new userActions.UserSignout(this.userRequestPayload));
+  }
 }

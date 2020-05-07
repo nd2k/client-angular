@@ -6,6 +6,9 @@ import { map, tap } from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginResponsePayload } from '../../dto/loginResponsePayload';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Store } from '@ngrx/store';
+import * as userActions from '../../state/user.actions';
+import * as fromUser from '../../state/user.reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +18,8 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private store: Store
   ) {}
 
   signup(userRequestPayload: UserRequestPayload): Observable<any> {
@@ -46,11 +50,18 @@ export class AuthService {
       );
   }
 
+  signout(userRequestPayload: UserRequestPayload): void {
+    console.log('signout', userRequestPayload);
+  }
+
   refreshToken() {
+    console.log('refreshtoken is fired');
+
     const refreshTokenPayload = {
       refreshToken: this.getRefreshToken(),
       email: this.getEmail(),
     };
+    console.log(refreshTokenPayload);
     return this.httpClient
       .post<LoginResponsePayload>(
         'http://localhost:3000/api/v1/auth/refresh',
@@ -58,6 +69,7 @@ export class AuthService {
       )
       .pipe(
         tap((response) => {
+          console.log(response);
           this.localStorage.store(
             'authorizationToken',
             response.authenticationToken
@@ -85,6 +97,18 @@ export class AuthService {
 
   public isAuthenticated(): Boolean {
     const jwtToken: any | null = this.getJwtToken();
-    return !this.helper.isTokenExpired(jwtToken);
+    console.log(jwtToken);
+    if (this.helper.isTokenExpired(jwtToken)) {
+      console.log(this.helper.isTokenExpired(jwtToken));
+      console.log('jwtexpired');
+      try {
+        this.store.dispatch(new userActions.UserRefreshToken());
+        console.log('refreshtoken');
+        return true;
+      } catch {
+        (error) => console.log(error);
+      }
+    }
+    return true;
   }
 }
