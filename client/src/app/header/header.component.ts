@@ -20,7 +20,6 @@ import { User } from '../model/user.model';
 import { ErrorResponsePayload } from '../dto/errorResponsePayload';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LogoutRequestPayload } from '../dto/logoutRequestPayload';
-import { AuthService } from '../services/auth/auth.service';
 
 declare var $: any;
 /**
@@ -67,8 +66,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService,
     private router: Router,
     private store: Store,
-    private localStorageService: LocalStorageService,
-    private authService: AuthService
+    private localStorageService: LocalStorageService
   ) {
     this.userRequestPayload = {
       email: '',
@@ -110,15 +108,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.isSignup$ = this.store.select(fromUser.getIsSignup);
     this.isTokenRefreshed$ = this.store.select(fromUser.getTokenRefreshed);
     this.error$ = this.store.select(fromUser.getError);
-
-    // this.isAuthenticated$.subscribe((isAuthenticated) => {
-    //   if (!isAuthenticated) {
-    //     console.log('essai', !isAuthenticated);
-    //     console.log(this.authService.getIsAuthenticated());
-    //     return this.authService.getIsAuthenticated();
-    //   }
-    //   return isAuthenticated;
-    // });
 
     this.user$.subscribe((user) => {
       this.user = user;
@@ -187,15 +176,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   public signOut(): void {
-    console.log('signout');
-
     this.logoutRequestPayload.email = this.localStorageService.retrieve(
       'email'
     );
     this.logoutRequestPayload.refreshToken = this.localStorageService.retrieve(
       'refreshToken'
     );
-
     this.store.dispatch(new userActions.UserSignout(this.logoutRequestPayload));
   }
 }

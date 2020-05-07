@@ -149,7 +149,6 @@ export class AuthService {
    */
   public getIsAuthenticated(): Boolean {
     const jwtToken: any | null = this.getAuthenticationToken();
-    console.log('jwt expired?', this.helper.isTokenExpired(jwtToken));
 
     if (this.helper.isTokenExpired(jwtToken)) {
       try {
