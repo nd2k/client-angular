@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../shared/services/auth/auth.service';
 import * as userActions from './user.actions';
 import { User } from '../model/user.model';
 import { UserRequestPayload } from 'src/app/dto/userRequestPayload';

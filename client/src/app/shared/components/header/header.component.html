@@ -1,4 +1,13 @@
-<nav class="navbar navbar-expand-md">
+<nav class="navbar navbar-expand">
+  <button
+    class="mr-3"
+    type="button"
+    id="sidebarCollapse"
+    (click)="toggleSidenav()"
+    *ngIf="isAuthenticated$ | async"
+  >
+    <fa-icon class="icon-sidenav" [icon]="faBars"></fa-icon>
+  </button>
   <a class="navbar-brand" href="#">
     MyApp
   </a>
@@ -12,7 +21,9 @@
     aria-expanded="false"
     aria-label="Toggle navigation"
   >
-    <span class="navbar-toggler-icon"></span>
+    <span>
+      <fa-icon class="icon-burger" [icon]="faBars"></fa-icon>
+    </span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbar">

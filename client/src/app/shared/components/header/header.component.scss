@@ -1,4 +1,4 @@
-@import "../../styles.scss";
+@import "../../../../styles.scss";
 
 nav {
   background-color: $primary-color;
@@ -28,9 +28,22 @@ nav {
   width: 90%;
 }
 
+#sidebarCollapse {
+  background-color: $primary-color;
+  border: none;
+}
+
 fa-icon {
   font-size: 1.5rem;
   color: $fiftary-color;
+}
+
+.icon-sidenav {
+  color: $tertiary-color;
+}
+
+.icon-burger {
+  color: $secondary-color;
 }
 
 .col__icon {

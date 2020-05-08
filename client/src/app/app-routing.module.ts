@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuardService } from './services/guard/auth-guard.service';
+import { HomeComponent } from './pages/home/home.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AuthGuardService } from './shared/services/guard/auth-guard.service';
+import { DefaultComponent } from './layouts/default/default.component';
 
 /**
  * Routes object containing all the app routes
@@ -19,13 +20,19 @@ import { AuthGuardService } from './services/guard/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuardService],
-    runGuardsAndResolvers: 'always',
+    component: DefaultComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuardService],
+        runGuardsAndResolvers: 'always',
+      },
+    ],
   },
   { path: '**', redirectTo: '' },
 ];

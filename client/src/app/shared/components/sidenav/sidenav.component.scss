@@ -1,0 +1,73 @@
+@import "../../../../styles.scss";
+
+p {
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+}
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.sidebar-header {
+  background-color: $primary-color;
+  margin: auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+#sidebar {
+  min-height: 91.5vh;
+  background-color: $primary-color;
+  color: $tertiary-color;
+  transition: all 0.3s;
+}
+
+#sidebar ul.components {
+  padding: 1rem 0;
+  border-bottom: 1px solid $quaternary-color;
+  border-top: 1px solid $quaternary-color;
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 1rem;
+  font-size: 1.1em;
+  display: block;
+}
+#sidebar ul li a:hover {
+  color: $tertiary-color;
+  background-color: $quaternary-color;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+  color: $tertiary-color;
+  background: $quaternary-color;
+}
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 2rem !important;
+  background: $primary-color;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}

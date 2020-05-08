@@ -4,22 +4,25 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
+  Output,
 } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import { CompareFieldsValidator } from './../utils/compareFields';
-import { UserRequestPayload } from '../dto/userRequestPayload';
+import { faEnvelope, faLock, faBars } from '@fortawesome/free-solid-svg-icons';
+import { CompareFieldsValidator } from '../../../utils/compareFields';
+import { UserRequestPayload } from '../../../dto/userRequestPayload';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
-import * as userActions from '../state/user.actions';
-import * as fromUser from '../state/user.reducer';
+import * as userActions from '../../../state/user.actions';
+import * as fromUser from '../../../state/user.reducer';
 import { Observable } from 'rxjs';
-import { User } from '../model/user.model';
-import { ErrorResponsePayload } from '../dto/errorResponsePayload';
+import { User } from '../../../model/user.model';
+import { ErrorResponsePayload } from '../../../dto/errorResponsePayload';
 import { LocalStorageService } from 'ngx-webstorage';
-import { LogoutRequestPayload } from '../dto/logoutRequestPayload';
+import { LogoutRequestPayload } from '../../../dto/logoutRequestPayload';
+import { EventEmitter } from 'protractor';
+import { SidenavService } from '../../services/sidenav/sidenav.service';
 
 declare var $: any;
 /**
@@ -32,6 +35,8 @@ declare var $: any;
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
+  isSidenavOpened: boolean;
+
   registerForm: FormGroup;
   loginForm: FormGroup;
   userRequestPayload: UserRequestPayload;
@@ -40,6 +45,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   faEnvelope = faEnvelope;
   faLock = faLock;
+  faBars = faBars;
 
   isActive$: Observable<boolean>;
   isAuthenticated$: Observable<boolean>;
@@ -66,7 +72,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService,
     private router: Router,
     private store: Store,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private sidenavService: SidenavService
   ) {
     this.userRequestPayload = {
       email: '',
@@ -137,6 +144,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.toastr.error(error.errorMessage);
       }
     });
+
+    this.sidenavService.isSidenavOpenedCurrent.subscribe((isSidenavOpened) => {
+      this.isSidenavOpened = isSidenavOpened;
+    });
+  }
+
+  toggleSidenav() {
+    this.sidenavService.toggleSidenav(
+      (this.isSidenavOpened = !this.isSidenavOpened)
+    );
   }
 
   ngAfterViewInit(): void {}
