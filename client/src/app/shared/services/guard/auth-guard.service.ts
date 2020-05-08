@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromUser from '../../../state/user.reducer';
+import * as fromUser from '../../state/user.reducer';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({

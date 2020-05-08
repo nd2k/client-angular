@@ -8,19 +8,19 @@ import {
 } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { faEnvelope, faLock, faBars } from '@fortawesome/free-solid-svg-icons';
-import { CompareFieldsValidator } from '../../../utils/compareFields';
-import { UserRequestPayload } from '../../../dto/userRequestPayload';
+import { CompareFieldsValidator } from '../../utils/compareFields';
+import { UserRequestPayload } from '../../dto/userRequestPayload';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
-import * as userActions from '../../../state/user.actions';
-import * as fromUser from '../../../state/user.reducer';
+import * as userActions from '../../state/user.actions';
+import * as fromUser from '../../state/user.reducer';
 import { Observable } from 'rxjs';
-import { User } from '../../../model/user.model';
-import { ErrorResponsePayload } from '../../../dto/errorResponsePayload';
+import { User } from '../../model/user.model';
+import { ErrorResponsePayload } from '../../dto/errorResponsePayload';
 import { LocalStorageService } from 'ngx-webstorage';
-import { LogoutRequestPayload } from '../../../dto/logoutRequestPayload';
+import { LogoutRequestPayload } from '../../dto/logoutRequestPayload';
 import { EventEmitter } from 'protractor';
 import { SidenavService } from '../../services/sidenav/sidenav.service';
 

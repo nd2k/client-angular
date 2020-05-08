@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromUserReducer from '../../../state/user.reducer';
+import * as fromUserReducer from '../../state/user.reducer';
 
 @Component({
   selector: 'app-spinner',

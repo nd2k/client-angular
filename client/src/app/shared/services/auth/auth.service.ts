@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserRequestPayload } from 'src/app/dto/userRequestPayload';
+import { UserRequestPayload } from 'src/app/shared/dto/userRequestPayload';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
-import { LoginResponsePayload } from '../../../dto/loginResponsePayload';
+import { LoginResponsePayload } from '../../dto/loginResponsePayload';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngrx/store';
-import * as userActions from '../../../state/user.actions';
-import { LogoutRequestPayload } from 'src/app/dto/logoutRequestPayload';
+import * as userActions from '../../state/user.actions';
+import { LogoutRequestPayload } from 'src/app/shared/dto/logoutRequestPayload';
 
 /**
  * @AuthService

@@ -14,11 +14,11 @@ import { AuthGuardService } from './shared/services/guard/auth-guard.service';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { userReducer } from './state/user.reducer';
+import { userReducer } from './shared/state/user.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffect } from './state/user.effects';
+import { UserEffect } from './shared/state/user.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { CustomSerializer } from './state/custom-router-serializer';
+import { CustomSerializer } from './shared/state/custom-router-serializer';
 import { DefaultModule } from './layouts/default/default.module';
 
 @NgModule({
