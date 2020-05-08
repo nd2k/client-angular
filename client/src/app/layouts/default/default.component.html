@@ -1,15 +1,15 @@
 <app-header flexLayout="column"></app-header>
 <div flexLayout="row" fxFlex [@openClose]="isSidenavOpened ? true : false">
-  <div fxFlex="20">
+  <div fxFlex="14rem">
     <app-sidenav></app-sidenav>
   </div>
-  <div fxFlex="80">
+  <div fxFlexFill>
     <router-outlet></router-outlet>
   </div>
 </div>
-<div flexLayout="row" fxFlex *ngIf="!isSidenavOpened">
+<!-- <div flexLayout="row" fxFlex *ngIf="!isSidenavOpened">
   <div fxFlex="100">
     <router-outlet></router-outlet>
   </div>
-</div>
+</div> -->
 <app-spinner></app-spinner>

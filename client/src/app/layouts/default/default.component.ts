@@ -15,7 +15,7 @@ import {
   animations: [
     trigger('openClose', [
       state('true', style({ transform: 'translateX(0)' })),
-      state('false', style({ transform: 'translateX(-20%)' })),
+      state('false', style({ transform: 'translateX(-14rem)' })),
       transition('false <=> true', animate(500)),
     ]),
   ],
