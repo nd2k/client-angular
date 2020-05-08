@@ -56,6 +56,12 @@ import { DefaultModule } from './layouts/default/default.module';
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],
-  exports: [RouterModule, FontAwesomeModule, ReactiveFormsModule],
+  exports: [
+    RouterModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+  ],
 })
 export class AppModule {}

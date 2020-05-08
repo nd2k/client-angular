@@ -1,5 +1,5 @@
 <app-header flexLayout="column"></app-header>
-<div flexLayout="row" fxFlex *ngIf="isSidenavOpened">
+<div flexLayout="row" fxFlex [@openClose]="isSidenavOpened ? true : false">
   <div fxFlex="20">
     <app-sidenav></app-sidenav>
   </div>

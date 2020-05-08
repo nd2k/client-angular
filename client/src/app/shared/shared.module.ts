@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [HeaderComponent, SidenavComponent, SpinnerComponent],
@@ -16,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BrowserModule,
   ],
   exports: [HeaderComponent, SidenavComponent, SpinnerComponent],
 })

@@ -1,5 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SidenavService } from '../../services/sidenav/sidenav.service';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-sidenav',
