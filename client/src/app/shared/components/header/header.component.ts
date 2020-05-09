@@ -20,9 +20,10 @@ import { Observable } from 'rxjs';
 import { User } from '../../model/user.model';
 import { ErrorResponsePayload } from '../../dto/errorResponsePayload';
 import { LocalStorageService } from 'ngx-webstorage';
-import { LogoutRequestPayload } from '../../dto/logoutRequestPayload';
-import { EventEmitter } from 'protractor';
+import { LogoutUserRequestPayload } from '../../dto/logoutUserRequestPayload';
 import { SidenavService } from '../../services/sidenav/sidenav.service';
+import { RegisterUserRequestPayload } from '../../dto/registerUserRequestPayload';
+import { LoginUserRequestPayload } from '../../dto/loginUserRequestPayload';
 
 declare var $: any;
 /**
@@ -40,8 +41,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
   userRequestPayload: UserRequestPayload;
+  registerUserRequestPayload: RegisterUserRequestPayload;
+  loginUserRequestPayload: LoginUserRequestPayload;
   user: User;
-  logoutRequestPayload: LogoutRequestPayload;
+  logoutUserRequestPayload: LogoutUserRequestPayload;
 
   faEnvelope = faEnvelope;
   faLock = faLock;
@@ -75,12 +78,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private localStorageService: LocalStorageService,
     private sidenavService: SidenavService
   ) {
-    this.userRequestPayload = {
+    this.registerUserRequestPayload = {
       email: '',
       password: '',
     };
-    this.logoutRequestPayload = {
+    this.loginUserRequestPayload = {
       email: '',
+      password: '',
+    };
+    this.logoutUserRequestPayload = {
       refreshToken: '',
     };
   }
@@ -164,9 +170,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
    * Data are coming from the registerForm
    */
   public signUp(): void {
-    this.userRequestPayload.email = this.registerForm.get('email').value;
-    this.userRequestPayload.password = this.registerForm.get('password').value;
-    this.store.dispatch(new userActions.UserSignup(this.userRequestPayload));
+    this.registerUserRequestPayload.email = this.registerForm.get(
+      'email'
+    ).value;
+    this.registerUserRequestPayload.password = this.registerForm.get(
+      'password'
+    ).value;
+    this.store.dispatch(
+      new userActions.UserSignup(this.registerUserRequestPayload)
+    );
     this.registerForm.reset();
     this.signupTab.nativeElement.classList.remove('active');
     this.signupForm.nativeElement.classList.remove('active', 'show');
@@ -180,9 +192,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
    * Data are coming from loginForm
    */
   public signIn(): void {
-    this.userRequestPayload.email = this.loginForm.get('email').value;
-    this.userRequestPayload.password = this.loginForm.get('password').value;
-    this.store.dispatch(new userActions.UserSignin(this.userRequestPayload));
+    this.loginUserRequestPayload.email = this.loginForm.get('email').value;
+    this.loginUserRequestPayload.password = this.loginForm.get(
+      'password'
+    ).value;
+    this.store.dispatch(
+      new userActions.UserSignin(this.loginUserRequestPayload)
+    );
     this.loginForm.reset();
     $(this.modal.nativeElement).modal('hide');
     if (this.isAuthenticated) {
@@ -192,13 +208,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * @SignOut method
+   * Method used to sign out the user
+   */
   public signOut(): void {
-    this.logoutRequestPayload.email = this.localStorageService.retrieve(
-      'email'
-    );
-    this.logoutRequestPayload.refreshToken = this.localStorageService.retrieve(
+    this.logoutUserRequestPayload.refreshToken = this.localStorageService.retrieve(
       'refreshToken'
     );
-    this.store.dispatch(new userActions.UserSignout(this.logoutRequestPayload));
+    this.store.dispatch(
+      new userActions.UserSignout(this.logoutUserRequestPayload)
+    );
   }
 }

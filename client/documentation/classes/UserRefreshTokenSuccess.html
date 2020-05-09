@@ -60,7 +60,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/state/user.actions.ts</code>
+            <code>src/app/shared/state/user.actions.ts</code>
         </p>
 
 
@@ -117,7 +117,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/state/user.actions.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/shared/state/user.actions.ts:87</a></div>
                             </td>
                         </tr>
 
@@ -181,7 +181,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/state/user.actions.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/shared/state/user.actions.ts:89</a></div>
                             </td>
                         </tr>
 
@@ -208,7 +208,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/state/user.actions.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/shared/state/user.actions.ts:87</a></div>
                             </td>
                         </tr>
 
@@ -232,6 +232,9 @@ import { User } from &#x27;../model/user.model&#x27;;
 import { ErrorResponsePayload } from &#x27;../dto/errorResponsePayload&#x27;;
 import { UserRequestPayload } from &#x27;../dto/userRequestPayload&#x27;;
 import { LoginResponsePayload } from &#x27;../dto/loginResponsePayload&#x27;;
+import { LogoutUserRequestPayload } from &#x27;../dto/logoutUserRequestPayload&#x27;;
+import { RegisterUserRequestPayload } from &#x27;../dto/registerUserRequestPayload&#x27;;
+import { LoginUserRequestPayload } from &#x27;../dto/loginUserRequestPayload&#x27;;
 
 export enum UserActionTypes {
   USER_SIGNUP &#x3D; &#x27;[User] signup user&#x27;,
@@ -246,12 +249,13 @@ export enum UserActionTypes {
   USER_REFRESHTOKEN &#x3D; &#x27;[User] refreshToken user&#x27;,
   USER_REFRESHTOKEN_SUCCESS &#x3D; &#x27;[User] refreshToken user success&#x27;,
   USER_REFRESHTOKEN_FAIL &#x3D; &#x27;[User] refreshToken user fail&#x27;,
+  USER_AUTHENTICATE &#x3D; &#x27;[User] authenticate user from jwt&#x27;,
 }
 
 export class UserSignup implements Action {
   readonly type &#x3D; UserActionTypes.USER_SIGNUP;
 
-  constructor(public payload: UserRequestPayload) {}
+  constructor(public payload: RegisterUserRequestPayload) {}
 }
 
 export class UserSignupSuccess implements Action {
@@ -269,7 +273,7 @@ export class UserSignupFail implements Action {
 export class UserSignin implements Action {
   readonly type &#x3D; UserActionTypes.USER_SIGNIN;
 
-  constructor(public payload: UserRequestPayload) {}
+  constructor(public payload: LoginUserRequestPayload) {}
 }
 
 export class UserSigninSuccess implements Action {
@@ -287,13 +291,13 @@ export class UserSigninFail implements Action {
 export class UserSignout implements Action {
   readonly type &#x3D; UserActionTypes.USER_SIGNOUT;
 
-  constructor(public payload: UserRequestPayload) {}
+  constructor(public payload: LogoutUserRequestPayload) {}
 }
 
-export class UserSignoutSucces implements Action {
+export class UserSignoutSuccess implements Action {
   readonly type &#x3D; UserActionTypes.USER_SIGNOUT_SUCCESS;
 
-  constructor(public payload: UserRequestPayload) {}
+  constructor() {}
 }
 
 export class UserSignoutFail implements Action {
@@ -320,6 +324,12 @@ export class UserRefreshTokenFail implements Action {
   constructor(public payload: { error: ErrorResponsePayload }) {}
 }
 
+export class UserAuthenticate implements Action {
+  readonly type &#x3D; UserActionTypes.USER_AUTHENTICATE;
+
+  constructor() {}
+}
+
 export type UserAction &#x3D;
   | UserSignin
   | UserSigninSuccess
@@ -328,11 +338,12 @@ export type UserAction &#x3D;
   | UserSignupSuccess
   | UserSignupFail
   | UserSignout
-  | UserSignoutSucces
+  | UserSignoutSuccess
   | UserSignoutFail
   | UserRefreshToken
   | UserRefreshTokenSuccess
-  | UserRefreshTokenFail;
+  | UserRefreshTokenFail
+  | UserAuthenticate;
 </code></pre>
     </div>
 </div>

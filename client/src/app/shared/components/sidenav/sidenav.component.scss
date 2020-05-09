@@ -22,7 +22,7 @@ a:focus {
 }
 
 #sidebar {
-  min-height: 91.5vh;
+  min-height: calc(100vh - 60.8px);
   background-color: $primary-color;
   color: $tertiary-color;
   transition: all 0.3s;
@@ -36,7 +36,7 @@ a:focus {
 
 #sidebar ul p {
   color: #fff;
-  padding: 10px;
+  padding: 0.6rem;
 }
 
 #sidebar ul li a {
@@ -68,6 +68,6 @@ a[data-toggle="collapse"] {
   display: block;
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: 1.2rem;
   transform: translateY(-50%);
 }

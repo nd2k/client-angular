@@ -58,7 +58,7 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#$" title="src/app/header/header.component.ts"><b>$</b>&nbsp;&nbsp;&nbsp;(src/.../header.component.ts)</a>
+                            <a href="#$" title="src/app/shared/components/header/header.component.ts"><b>$</b>&nbsp;&nbsp;&nbsp;(src/.../header.component.ts)</a>
                         </li>
                         <li>
                             <a href="#context" title="src/test.ts"><b>context</b>&nbsp;&nbsp;&nbsp;(src/.../test.ts)</a>
@@ -70,31 +70,37 @@
                             <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
-                            <a href="#getError" title="src/app/state/user.reducer.ts"><b>getError</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getError" title="src/app/shared/state/user.reducer.ts"><b>getError</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
-                            <a href="#getIsActive" title="src/app/state/user.reducer.ts"><b>getIsActive</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getIsActive" title="src/app/shared/state/user.reducer.ts"><b>getIsActive</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
-                            <a href="#getIsAuthenticated" title="src/app/state/user.reducer.ts"><b>getIsAuthenticated</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getIsAuthenticated" title="src/app/shared/state/user.reducer.ts"><b>getIsAuthenticated</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
-                            <a href="#getIsLoaded" title="src/app/state/user.reducer.ts"><b>getIsLoaded</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getIsLoaded" title="src/app/shared/state/user.reducer.ts"><b>getIsLoaded</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
-                            <a href="#getIsLoading" title="src/app/state/user.reducer.ts"><b>getIsLoading</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getIsLoading" title="src/app/shared/state/user.reducer.ts"><b>getIsLoading</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
-                            <a href="#getIsSignup" title="src/app/state/user.reducer.ts"><b>getIsSignup</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getIsSignin" title="src/app/shared/state/user.reducer.ts"><b>getIsSignin</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
-                            <a href="#getUser" title="src/app/state/user.reducer.ts"><b>getUser</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getIsSignup" title="src/app/shared/state/user.reducer.ts"><b>getIsSignup</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
-                            <a href="#getUserFeatureState" title="src/app/state/user.reducer.ts"><b>getUserFeatureState</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getTokenRefreshed" title="src/app/shared/state/user.reducer.ts"><b>getTokenRefreshed</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
-                            <a href="#initialState" title="src/app/state/user.reducer.ts"><b>initialState</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                            <a href="#getUser" title="src/app/shared/state/user.reducer.ts"><b>getUser</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getUserFeatureState" title="src/app/shared/state/user.reducer.ts"><b>getUserFeatureState</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#initialState" title="src/app/shared/state/user.reducer.ts"><b>initialState</b>&nbsp;&nbsp;&nbsp;(src/.../user.reducer.ts)</a>
                         </li>
                         <li>
                             <a href="#require" title="src/test.ts"><b>require</b>&nbsp;&nbsp;&nbsp;(src/.../test.ts)</a>
@@ -106,7 +112,7 @@
     </table>
 </section>
 
-    <h3>src/app/header/header.component.ts</h3>
+    <h3>src/app/shared/components/header/header.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -241,7 +247,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/app/state/user.reducer.ts</h3>
+    <h3>src/app/shared/state/user.reducer.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -367,6 +373,30 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="getIsSignin"></a>
+                        <span class="name">
+                            <b>
+                            getIsSignin</b>
+                            <a href="#getIsSignin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>createSelector(
+  getUserFeatureState,
+  (state: UserState) &#x3D;&gt; state.isSignin
+)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="getIsSignup"></a>
                         <span class="name">
                             <b>
@@ -380,6 +410,30 @@
                             <i>Default value : </i><code>createSelector(
   getUserFeatureState,
   (state: UserState) &#x3D;&gt; state.isSignup
+)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getTokenRefreshed"></a>
+                        <span class="name">
+                            <b>
+                            getTokenRefreshed</b>
+                            <a href="#getTokenRefreshed"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>createSelector(
+  getUserFeatureState,
+  (state: UserState) &#x3D;&gt; state.isTokenRefreshed
 )</code>
                         </td>
                     </tr>
@@ -457,8 +511,10 @@
   isAuthenticated: false,
   isActive: false,
   isSignup: false,
+  isSignin: false,
   isLoading: false,
   isLoaded: false,
+  isTokenRefreshed: false,
   error: null,
 }</code>
                         </td>

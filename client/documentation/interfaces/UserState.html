@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/state/user.reducer.ts</code>
+            <code>src/app/shared/state/user.reducer.ts</code>
         </p>
 
 
@@ -94,7 +94,13 @@
                                         <a href="#isLoading">isLoading</a>
                                 </li>
                                 <li>
+                                        <a href="#isSignin">isSignin</a>
+                                </li>
+                                <li>
                                         <a href="#isSignup">isSignup</a>
+                                </li>
+                                <li>
+                                        <a href="#isTokenRefreshed">isTokenRefreshed</a>
                                 </li>
                                 <li>
                                         <a href="#user">user</a>
@@ -259,6 +265,35 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
+                                        <a name="isSignin"></a>
+                                        <span class="name"><b>isSignin</b><a href="#isSignin"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>isSignin:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
                                         <a name="isSignup"></a>
                                         <span class="name"><b>isSignup</b><a href="#isSignup"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
@@ -266,6 +301,35 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <code>isSignup:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="isTokenRefreshed"></a>
+                                        <span class="name"><b>isTokenRefreshed</b><a href="#isTokenRefreshed"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>isTokenRefreshed:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -329,8 +393,10 @@ export interface UserState {
   isAuthenticated: boolean;
   isActive: boolean;
   isSignup: boolean;
+  isSignin: boolean;
   isLoading: boolean;
   isLoaded: boolean;
+  isTokenRefreshed: boolean;
   error: ErrorResponsePayload;
 }
 
@@ -343,8 +409,10 @@ export const initialState: UserState &#x3D; {
   isAuthenticated: false,
   isActive: false,
   isSignup: false,
+  isSignin: false,
   isLoading: false,
   isLoaded: false,
+  isTokenRefreshed: false,
   error: null,
 };
 
@@ -372,6 +440,7 @@ export function userReducer(
           expiresAt: action.payload.user.expiresAt,
           message: action.payload.user.message,
         },
+        error: null,
       };
     }
     case userActions.UserActionTypes.USER_SIGNUP_FAIL: {
@@ -380,6 +449,7 @@ export function userReducer(
         isLoading: false,
         isLoaded: false,
         isSignup: false,
+        user: null,
         error: {
           errorCode: action.payload.error.errorCode,
           errorMessage: action.payload.error.errorMessage,
@@ -399,8 +469,10 @@ export function userReducer(
         isLoading: false,
         isLoaded: true,
         isSignup: false,
+        isSignin: true,
         isAuthenticated: true,
         isActive: true,
+        isTokenRefreshed: false,
         user: {
           email: action.payload.user.email,
           authenticationToken: action.payload.user.authenticationToken,
@@ -408,6 +480,7 @@ export function userReducer(
           expiresAt: action.payload.user.expiresAt,
           message: action.payload.user.message,
         },
+        error: null,
       };
     }
     case userActions.UserActionTypes.USER_SIGNIN_FAIL: {
@@ -415,6 +488,40 @@ export function userReducer(
         ...state,
         isLoading: false,
         isLoaded: false,
+        isTokenRefreshed: false,
+        user: null,
+        error: {
+          errorCode: action.payload.error.errorCode,
+          errorMessage: action.payload.error.errorMessage,
+          httpStatus: action.payload.error.httpStatus,
+        },
+      };
+    }
+    case userActions.UserActionTypes.USER_SIGNOUT: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case userActions.UserActionTypes.USER_SIGNOUT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: true,
+        isSignup: false,
+        isSignin: false,
+        isAuthenticated: false,
+        isActive: false,
+        user: null,
+        error: null,
+      };
+    }
+    case userActions.UserActionTypes.USER_SIGNOUT_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: false,
+        user: null,
         error: {
           errorCode: action.payload.error.errorCode,
           errorMessage: action.payload.error.errorMessage,
@@ -436,6 +543,7 @@ export function userReducer(
         isSignup: false,
         isAuthenticated: true,
         isActive: true,
+        isTokenRefreshed: true,
         user: {
           email: action.payload.email,
           authenticationToken: action.payload.authenticationToken,
@@ -443,6 +551,7 @@ export function userReducer(
           expiresAt: action.payload.expiresAt,
           message: action.payload.message,
         },
+        error: null,
       };
     }
     case userActions.UserActionTypes.USER_REFRESHTOKEN_FAIL: {
@@ -450,11 +559,20 @@ export function userReducer(
         ...state,
         isLoading: false,
         isLoaded: false,
+        isAuthenticated: false,
+        isTokenRefreshed: true,
+        user: null,
         error: {
           errorCode: action.payload.error.errorCode,
           errorMessage: action.payload.error.errorMessage,
           httpStatus: action.payload.error.httpStatus,
         },
+      };
+    }
+    case userActions.UserActionTypes.USER_AUTHENTICATE: {
+      return {
+        ...state,
+        isAuthenticated: true,
       };
     }
     default: {
@@ -490,9 +608,19 @@ export const getIsSignup &#x3D; createSelector(
   (state: UserState) &#x3D;&gt; state.isSignup
 );
 
+export const getIsSignin &#x3D; createSelector(
+  getUserFeatureState,
+  (state: UserState) &#x3D;&gt; state.isSignin
+);
+
 export const getIsActive &#x3D; createSelector(
   getUserFeatureState,
   (state: UserState) &#x3D;&gt; state.isActive
+);
+
+export const getTokenRefreshed &#x3D; createSelector(
+  getUserFeatureState,
+  (state: UserState) &#x3D;&gt; state.isTokenRefreshed
 );
 
 export const getError &#x3D; createSelector(

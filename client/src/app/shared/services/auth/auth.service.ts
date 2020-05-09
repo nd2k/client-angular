@@ -8,7 +8,9 @@ import { LoginResponsePayload } from '../../dto/loginResponsePayload';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngrx/store';
 import * as userActions from '../../state/user.actions';
-import { LogoutRequestPayload } from 'src/app/shared/dto/logoutRequestPayload';
+import { LogoutUserRequestPayload } from 'src/app/shared/dto/logoutUserRequestPayload';
+import { RegisterUserRequestPayload } from '../../dto/registerUserRequestPayload';
+import { LoginUserRequestPayload } from '../../dto/loginUserRequestPayload';
 
 /**
  * @AuthService
@@ -33,10 +35,12 @@ export class AuthService {
    * @param userRequestPayload
    * @returns the user's information in case of success or an error messge in case of failure
    */
-  public signup(userRequestPayload: UserRequestPayload): Observable<any> {
+  public signup(
+    registerUserPayload: RegisterUserRequestPayload
+  ): Observable<any> {
     return this.httpClient.post(
       'http://localhost:3000/api/v1/auth/register',
-      userRequestPayload
+      registerUserPayload
     );
   }
 
@@ -45,11 +49,13 @@ export class AuthService {
    * @param userRequestPayload
    * @returns the user's information in case of success and store it in the localstorage or an error messge in case of failure
    */
-  public signin(userRequestPayload: UserRequestPayload): Observable<any> {
+  public signin(
+    loginUserRequestPayload: LoginUserRequestPayload
+  ): Observable<any> {
     return this.httpClient
       .post<LoginResponsePayload>(
         'http://localhost:3000/api/v1/auth/login',
-        userRequestPayload
+        loginUserRequestPayload
       )
       .pipe(
         map((data) => {
@@ -71,9 +77,14 @@ export class AuthService {
    * @param userRequestPayload
    * @returns deletion of data from localstorage
    */
-  public signout(logoutRequestPayload: LogoutRequestPayload): Observable<any> {
+  public signout(
+    logoutUserRequestPayload: LogoutUserRequestPayload
+  ): Observable<any> {
     return this.httpClient
-      .post('http://localhost:3000/api/v1/auth/logout', logoutRequestPayload)
+      .post(
+        'http://localhost:3000/api/v1/auth/logout',
+        logoutUserRequestPayload
+      )
       .pipe(
         map((data) => {
           this.localStorage.clear('authenticationToken');

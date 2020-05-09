@@ -7,27 +7,42 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromUserReducer from '../../shared/state/user.reducer';
 
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss'],
   animations: [
-    trigger('openClose', [
+    trigger('openCloseSidenav', [
       state('true', style({ transform: 'translateX(0)' })),
       state('false', style({ transform: 'translateX(-14rem)' })),
-      transition('false <=> true', animate(500)),
+      transition('false <=> true', animate(300)),
+    ]),
+    trigger('resizeBody', [
+      state('true', style({ transform: 'translateX(0)' })),
+      state('false', style({ transform: 'translateX(-14rem)' })),
+      transition('false <=> true', animate(300)),
     ]),
   ],
 })
 export class DefaultComponent implements OnInit {
   isSidenavOpened: boolean;
+  isAuthenticated: boolean;
 
-  constructor(private sidenavService: SidenavService) {}
+  isAuthenticated$: Observable<boolean>;
+
+  constructor(private sidenavService: SidenavService, private store: Store) {}
 
   ngOnInit(): void {
     this.sidenavService.isSidenavOpenedCurrent.subscribe(
       (isSidenavOpened) => (this.isSidenavOpened = isSidenavOpened)
+    );
+
+    this.isAuthenticated$ = this.store.select(
+      fromUserReducer.getIsAuthenticated
     );
   }
 }

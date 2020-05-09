@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/header/header.component.ts</code>
+    <code>src/app/shared/components/header/header.component.ts</code>
 </p>
 
 
@@ -142,6 +142,9 @@
                                 <a href="#error$">error$</a>
                             </li>
                             <li>
+                                <a href="#faBars">faBars</a>
+                            </li>
+                            <li>
                                 <a href="#faEnvelope">faEnvelope</a>
                             </li>
                             <li>
@@ -160,19 +163,43 @@
                                 <a href="#isAuthenticated$">isAuthenticated$</a>
                             </li>
                             <li>
+                                <a href="#isSidenavOpened">isSidenavOpened</a>
+                            </li>
+                            <li>
+                                <a href="#isSignin">isSignin</a>
+                            </li>
+                            <li>
+                                <a href="#isSignin$">isSignin$</a>
+                            </li>
+                            <li>
                                 <a href="#isSignup">isSignup</a>
                             </li>
                             <li>
                                 <a href="#isSignup$">isSignup$</a>
                             </li>
                             <li>
+                                <a href="#isTokenRefreshed">isTokenRefreshed</a>
+                            </li>
+                            <li>
+                                <a href="#isTokenRefreshed$">isTokenRefreshed$</a>
+                            </li>
+                            <li>
                                 <a href="#loginForm">loginForm</a>
+                            </li>
+                            <li>
+                                <a href="#loginUserRequestPayload">loginUserRequestPayload</a>
+                            </li>
+                            <li>
+                                <a href="#logoutUserRequestPayload">logoutUserRequestPayload</a>
                             </li>
                             <li>
                                 <a href="#modal">modal</a>
                             </li>
                             <li>
                                 <a href="#registerForm">registerForm</a>
+                            </li>
+                            <li>
+                                <a href="#registerUserRequestPayload">registerUserRequestPayload</a>
                             </li>
                             <li>
                                 <a href="#signinForm">signinForm</a>
@@ -214,13 +241,19 @@
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#signIn">signIn</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#signOut">signOut</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#signUp">signUp</a>
+                            </li>
+                            <li>
+                                <a href="#toggleSidenav">toggleSidenav</a>
                             </li>
                         </ul>
                     </td>
@@ -240,12 +273,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(toastr: ToastrService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, store: Store)</code>
+<code>constructor(toastr: ToastrService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, store: Store, localStorageService: LocalStorageService, sidenavService: <a href="../injectables/SidenavService.html">SidenavService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/header/header.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/shared/components/header/header.component.ts:72</a></div>
                             </td>
                         </tr>
 
@@ -298,6 +331,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>localStorageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>LocalStorageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sidenavService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SidenavService.html" target="_self" >SidenavService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -338,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">src/app/header/header.component.ts:123</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">src/app/shared/components/header/header.component.ts:166</a></div>
                 </td>
             </tr>
 
@@ -377,8 +434,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/app/header/header.component.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/app/shared/components/header/header.component.ts:95</a></div>
                 </td>
             </tr>
 
@@ -401,6 +458,7 @@
                     <a name="signIn"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             signIn
                         </b>
                         <a href="#signIn"><span class="icon ion-ios-link"></span></a>
@@ -409,15 +467,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>signIn()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>signIn()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">src/app/header/header.component.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/app/shared/components/header/header.component.ts:195</a></div>
                 </td>
             </tr>
 
@@ -440,6 +499,7 @@
                     <a name="signOut"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             signOut
                         </b>
                         <a href="#signOut"><span class="icon ion-ios-link"></span></a>
@@ -448,15 +508,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>signOut()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>signOut()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">src/app/header/header.component.ts:155</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">src/app/shared/components/header/header.component.ts:216</a></div>
                 </td>
             </tr>
 
@@ -479,6 +540,7 @@
                     <a name="signUp"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             signUp
                         </b>
                         <a href="#signUp"><span class="icon ion-ios-link"></span></a>
@@ -487,15 +549,55 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>signUp()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>signUp()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">src/app/header/header.component.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/app/shared/components/header/header.component.ts:173</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleSidenav"></a>
+                    <span class="name">
+                        <b>
+                            toggleSidenav
+                        </b>
+                        <a href="#toggleSidenav"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleSidenav()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/app/shared/components/header/header.component.ts:160</a></div>
                 </td>
             </tr>
 
@@ -537,7 +639,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/header/header.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/shared/components/header/header.component.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -564,7 +666,33 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/header/header.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/components/header/header.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="faBars"></a>
+                        <span class="name">
+                            <b>
+                            faBars</b>
+                            <a href="#faBars"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>faBars</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/shared/components/header/header.component.ts:51</a></div>
                             </td>
                         </tr>
 
@@ -590,7 +718,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/header/header.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/shared/components/header/header.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -616,7 +744,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/header/header.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/shared/components/header/header.component.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -643,7 +771,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/header/header.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/shared/components/header/header.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -670,7 +798,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/header/header.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/shared/components/header/header.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -697,7 +825,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/header/header.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/shared/components/header/header.component.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -724,7 +852,88 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/header/header.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/shared/components/header/header.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isSidenavOpened"></a>
+                        <span class="name">
+                            <b>
+                            isSidenavOpened</b>
+                            <a href="#isSidenavOpened"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/components/header/header.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isSignin"></a>
+                        <span class="name">
+                            <b>
+                            isSignin</b>
+                            <a href="#isSignin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/shared/components/header/header.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isSignin$"></a>
+                        <span class="name">
+                            <b>
+                            isSignin$</b>
+                            <a href="#isSignin$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/shared/components/header/header.component.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -751,7 +960,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/header/header.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/shared/components/header/header.component.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -778,7 +987,61 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/header/header.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/shared/components/header/header.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isTokenRefreshed"></a>
+                        <span class="name">
+                            <b>
+                            isTokenRefreshed</b>
+                            <a href="#isTokenRefreshed"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/shared/components/header/header.component.ts:63</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isTokenRefreshed$"></a>
+                        <span class="name">
+                            <b>
+                            isTokenRefreshed$</b>
+                            <a href="#isTokenRefreshed$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/shared/components/header/header.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -805,7 +1068,61 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/header/header.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/shared/components/header/header.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loginUserRequestPayload"></a>
+                        <span class="name">
+                            <b>
+                            loginUserRequestPayload</b>
+                            <a href="#loginUserRequestPayload"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/LoginUserRequestPayload.html" target="_self" >LoginUserRequestPayload</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/shared/components/header/header.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logoutUserRequestPayload"></a>
+                        <span class="name">
+                            <b>
+                            logoutUserRequestPayload</b>
+                            <a href="#logoutUserRequestPayload"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/LogoutUserRequestPayload.html" target="_self" >LogoutUserRequestPayload</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/shared/components/header/header.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -841,7 +1158,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/header/header.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/shared/components/header/header.component.ts:72</a></div>
                             </td>
                         </tr>
 
@@ -868,7 +1185,34 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/header/header.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/shared/components/header/header.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="registerUserRequestPayload"></a>
+                        <span class="name">
+                            <b>
+                            registerUserRequestPayload</b>
+                            <a href="#registerUserRequestPayload"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/RegisterUserRequestPayload.html" target="_self" >RegisterUserRequestPayload</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/components/header/header.component.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -904,7 +1248,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/header/header.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/shared/components/header/header.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -940,7 +1284,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/header/header.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/shared/components/header/header.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -976,7 +1320,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/header/header.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/shared/components/header/header.component.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -1012,7 +1356,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/header/header.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/shared/components/header/header.component.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -1039,7 +1383,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/header/header.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/shared/components/header/header.component.ts:46</a></div>
                             </td>
                         </tr>
 
@@ -1066,7 +1410,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/header/header.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/shared/components/header/header.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -1093,7 +1437,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/header/header.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/shared/components/header/header.component.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -1112,20 +1456,26 @@
   ViewChild,
   ElementRef,
   AfterViewInit,
+  Output,
 } from &#x27;@angular/core&#x27;;
 import { FormGroup, Validators, FormControl } from &#x27;@angular/forms&#x27;;
-import { faEnvelope, faLock } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
-import { CompareFieldsValidator } from &#x27;./../utils/compareFields&#x27;;
-import { UserRequestPayload } from &#x27;../dto/userRequestPayload&#x27;;
+import { faEnvelope, faLock, faBars } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
+import { CompareFieldsValidator } from &#x27;../../utils/compareFields&#x27;;
+import { UserRequestPayload } from &#x27;../../dto/userRequestPayload&#x27;;
 import { ToastrService } from &#x27;ngx-toastr&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
 import { Store } from &#x27;@ngrx/store&#x27;;
-import * as userActions from &#x27;../state/user.actions&#x27;;
-import * as fromUser from &#x27;../state/user.reducer&#x27;;
+import * as userActions from &#x27;../../state/user.actions&#x27;;
+import * as fromUser from &#x27;../../state/user.reducer&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
-import { User } from &#x27;../model/user.model&#x27;;
-import { ErrorResponsePayload } from &#x27;../dto/errorResponsePayload&#x27;;
+import { User } from &#x27;../../model/user.model&#x27;;
+import { ErrorResponsePayload } from &#x27;../../dto/errorResponsePayload&#x27;;
+import { LocalStorageService } from &#x27;ngx-webstorage&#x27;;
+import { LogoutUserRequestPayload } from &#x27;../../dto/logoutUserRequestPayload&#x27;;
+import { SidenavService } from &#x27;../../services/sidenav/sidenav.service&#x27;;
+import { RegisterUserRequestPayload } from &#x27;../../dto/registerUserRequestPayload&#x27;;
+import { LoginUserRequestPayload } from &#x27;../../dto/loginUserRequestPayload&#x27;;
 
 declare var $: any;
 /**
@@ -1138,21 +1488,31 @@ declare var $: any;
   styleUrls: [&#x27;./header.component.scss&#x27;],
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
+  isSidenavOpened: boolean;
+
   registerForm: FormGroup;
   loginForm: FormGroup;
   userRequestPayload: UserRequestPayload;
+  registerUserRequestPayload: RegisterUserRequestPayload;
+  loginUserRequestPayload: LoginUserRequestPayload;
   user: User;
+  logoutUserRequestPayload: LogoutUserRequestPayload;
 
   faEnvelope &#x3D; faEnvelope;
   faLock &#x3D; faLock;
+  faBars &#x3D; faBars;
 
   isActive$: Observable&lt;boolean&gt;;
-  isSignup$: Observable&lt;boolean&gt;;
   isAuthenticated$: Observable&lt;boolean&gt;;
+  isSignup$: Observable&lt;boolean&gt;;
+  isSignin$: Observable&lt;boolean&gt;;
+  isTokenRefreshed$: Observable&lt;boolean&gt;;
   user$: Observable&lt;User&gt;;
   error$: Observable&lt;ErrorResponsePayload&gt;;
   isActive: boolean;
   isSignup: boolean;
+  isSignin: boolean;
+  isTokenRefreshed: boolean;
   isAuthenticated: boolean;
   error: ErrorResponsePayload;
 
@@ -1166,11 +1526,21 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     private toastr: ToastrService,
     private router: Router,
-    private store: Store
+    private store: Store,
+    private localStorageService: LocalStorageService,
+    private sidenavService: SidenavService
   ) {
-    this.userRequestPayload &#x3D; {
+    this.registerUserRequestPayload &#x3D; {
       email: &#x27;&#x27;,
       password: &#x27;&#x27;,
+    };
+    this.loginUserRequestPayload &#x3D; {
+      email: &#x27;&#x27;,
+      password: &#x27;&#x27;,
+    };
+    this.logoutUserRequestPayload &#x3D; {
+      email: &#x27;&#x27;,
+      refreshToken: &#x27;&#x27;,
     };
   }
 
@@ -1199,8 +1569,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     this.user$ &#x3D; this.store.select(fromUser.getUser);
     this.isAuthenticated$ &#x3D; this.store.select(fromUser.getIsAuthenticated);
+    this.isSignin$ &#x3D; this.store.select(fromUser.getIsSignin);
     this.isActive$ &#x3D; this.store.select(fromUser.getIsActive);
     this.isSignup$ &#x3D; this.store.select(fromUser.getIsSignup);
+    this.isTokenRefreshed$ &#x3D; this.store.select(fromUser.getTokenRefreshed);
     this.error$ &#x3D; this.store.select(fromUser.getError);
 
     this.user$.subscribe((user) &#x3D;&gt; {
@@ -1208,11 +1580,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       return user;
     });
 
-    this.isAuthenticated$.subscribe((isAuthenticated) &#x3D;&gt; {
-      if (isAuthenticated) {
+    this.isTokenRefreshed$.subscribe((isTokenRefreshed) &#x3D;&gt; {
+      this.isTokenRefreshed &#x3D; isTokenRefreshed;
+      return isTokenRefreshed;
+    });
+
+    this.isSignin$.subscribe((isSignin) &#x3D;&gt; {
+      if (isSignin) {
         this.toastr.success(this.user.message);
       }
-      return isAuthenticated;
+      return isSignin;
     });
 
     this.isSignup$.subscribe((isSignup) &#x3D;&gt; {
@@ -1222,10 +1599,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
 
     this.error$.subscribe((error) &#x3D;&gt; {
-      if (error) {
+      if (error &amp;&amp; !this.isTokenRefreshed) {
         this.toastr.error(error.errorMessage);
       }
     });
+
+    this.sidenavService.isSidenavOpenedCurrent.subscribe((isSidenavOpened) &#x3D;&gt; {
+      this.isSidenavOpened &#x3D; isSidenavOpened;
+    });
+  }
+
+  toggleSidenav() {
+    this.sidenavService.toggleSidenav(
+      (this.isSidenavOpened &#x3D; !this.isSidenavOpened)
+    );
   }
 
   ngAfterViewInit(): void {}
@@ -1235,10 +1622,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
    * Method used to sign up the user
    * Data are coming from the registerForm
    */
-  signUp() {
-    this.userRequestPayload.email &#x3D; this.registerForm.get(&#x27;email&#x27;).value;
-    this.userRequestPayload.password &#x3D; this.registerForm.get(&#x27;password&#x27;).value;
-    this.store.dispatch(new userActions.UserSignup(this.userRequestPayload));
+  public signUp(): void {
+    this.registerUserRequestPayload.email &#x3D; this.registerForm.get(
+      &#x27;email&#x27;
+    ).value;
+    this.registerUserRequestPayload.password &#x3D; this.registerForm.get(
+      &#x27;password&#x27;
+    ).value;
+    this.store.dispatch(
+      new userActions.UserSignup(this.registerUserRequestPayload)
+    );
     this.registerForm.reset();
     this.signupTab.nativeElement.classList.remove(&#x27;active&#x27;);
     this.signupForm.nativeElement.classList.remove(&#x27;active&#x27;, &#x27;show&#x27;);
@@ -1251,24 +1644,53 @@ export class HeaderComponent implements OnInit, AfterViewInit {
    * Method used to sign in the user
    * Data are coming from loginForm
    */
-  signIn() {
-    this.userRequestPayload.email &#x3D; this.loginForm.get(&#x27;email&#x27;).value;
-    this.userRequestPayload.password &#x3D; this.loginForm.get(&#x27;password&#x27;).value;
-    this.store.dispatch(new userActions.UserSignin(this.userRequestPayload));
+  public signIn(): void {
+    this.loginUserRequestPayload.email &#x3D; this.loginForm.get(&#x27;email&#x27;).value;
+    this.loginUserRequestPayload.password &#x3D; this.loginForm.get(
+      &#x27;password&#x27;
+    ).value;
+    this.store.dispatch(
+      new userActions.UserSignin(this.loginUserRequestPayload)
+    );
     this.loginForm.reset();
     $(this.modal.nativeElement).modal(&#x27;hide&#x27;);
-    this.router.navigate([&#x27;/dashboard&#x27;]);
+    if (this.isAuthenticated) {
+      this.router.navigate([&#x27;/dashboard&#x27;]);
+    } else {
+      this.router.navigate([&#x27;/&#x27;]);
+    }
   }
 
-  signOut() {
-    this.store.dispatch(new userActions.UserSignout(this.userRequestPayload));
+  /**
+   * @SignOut method
+   * Method used to sign out the user
+   */
+  public signOut(): void {
+    this.logoutUserRequestPayload.email &#x3D; this.localStorageService.retrieve(
+      &#x27;email&#x27;
+    );
+    this.logoutUserRequestPayload.refreshToken &#x3D; this.localStorageService.retrieve(
+      &#x27;refreshToken&#x27;
+    );
+    this.store.dispatch(
+      new userActions.UserSignout(this.logoutUserRequestPayload)
+    );
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;nav class&#x3D;&quot;navbar navbar-expand-md&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;nav class&#x3D;&quot;navbar navbar-expand&quot;&gt;
+  &lt;button
+    class&#x3D;&quot;mr-3&quot;
+    type&#x3D;&quot;button&quot;
+    id&#x3D;&quot;sidebarCollapse&quot;
+    (click)&#x3D;&quot;toggleSidenav()&quot;
+    *ngIf&#x3D;&quot;isAuthenticated$ | async&quot;
+  &gt;
+    &lt;fa-icon class&#x3D;&quot;icon-sidenav&quot; [icon]&#x3D;&quot;faBars&quot;&gt;&lt;/fa-icon&gt;
+  &lt;/button&gt;
   &lt;a class&#x3D;&quot;navbar-brand&quot; href&#x3D;&quot;#&quot;&gt;
     MyApp
   &lt;/a&gt;
@@ -1282,7 +1704,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     aria-expanded&#x3D;&quot;false&quot;
     aria-label&#x3D;&quot;Toggle navigation&quot;
   &gt;
-    &lt;span class&#x3D;&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+    &lt;span&gt;
+      &lt;fa-icon class&#x3D;&quot;icon-burger&quot; [icon]&#x3D;&quot;faBars&quot;&gt;&lt;/fa-icon&gt;
+    &lt;/span&gt;
   &lt;/button&gt;
 
   &lt;div class&#x3D;&quot;collapse navbar-collapse&quot; id&#x3D;&quot;navbar&quot;&gt;
@@ -1313,18 +1737,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
           type&#x3D;&quot;button&quot;
           data-toggle&#x3D;&quot;modal&quot;
           data-target&#x3D;&quot;#sign&quot;
-          (click)&#x3D;&quot;signOut()&quot;
           &gt;Sign&lt;/a
         &gt;
       &lt;/li&gt;
       &lt;li class&#x3D;&quot;nav-item&quot; *ngIf&#x3D;&quot;isAuthenticated$ | async&quot;&gt;
-        &lt;a
-          class&#x3D;&quot;nav-link&quot;
-          type&#x3D;&quot;button&quot;
-          data-toggle&#x3D;&quot;modal&quot;
-          data-target&#x3D;&quot;#sign&quot;
-          &gt;Sign Out&lt;/a
-        &gt;
+        &lt;a class&#x3D;&quot;nav-link&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;signOut()&quot;&gt;Sign Out&lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
@@ -1625,7 +2042,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
                 <p class="comment">
                     <code>./header.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &quot;../../styles.scss&quot;;
+                <pre class="line-numbers"><code class="language-scss">@import &quot;../../../../styles.scss&quot;;
 
 nav {
   background-color: $primary-color;
@@ -1655,9 +2072,22 @@ nav {
   width: 90%;
 }
 
+#sidebarCollapse {
+  background-color: $primary-color;
+  border: none;
+}
+
 fa-icon {
   font-size: 1.5rem;
   color: $fiftary-color;
+}
+
+.icon-sidenav {
+  color: $tertiary-color;
+}
+
+.icon-burger {
+  color: $secondary-color;
 }
 
 .col__icon {
@@ -1846,8 +2276,8 @@ $animation-duration: 0.4s;
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-md">  <a class="navbar-brand" href="#">    MyApp  </a>  <button    class="navbar-toggler"    type="button"    data-toggle="collapse"    data-target="#navbar"    aria-controls="navbar"    aria-expanded="false"    aria-label="Toggle navigation"  >    <span class="navbar-toggler-icon"></span>  </button>  <div class="collapse navbar-collapse" id="navbar">    <ul class="navbar-nav mr-auto">      <li class="nav-item">        <a          class="nav-link"          routerLink="/"          routerLinkActive="active"          [routerLinkActiveOptions]="{ exact: true }"          >Home</a        >      </li>      <li class="nav-item" *ngIf="isAuthenticated$ | async">        <a          class="nav-link"          routerLink="/dashboard"          routerLinkActive="active"          [routerLinkActiveOptions]="{ exact: true }"          >Dashboard</a        >      </li>    </ul>    <ul class="navbar-nav">      <li class="nav-item" *ngIf="!(isAuthenticated$ | async)">        <a          class="nav-link"          type="button"          data-toggle="modal"          data-target="#sign"          (click)="signOut()"          >Sign</a        >      </li>      <li class="nav-item" *ngIf="isAuthenticated$ | async">        <a          class="nav-link"          type="button"          data-toggle="modal"          data-target="#sign"          >Sign Out</a        >      </li>    </ul>  </div></nav><div  #modal  class="modal fade"  id="sign"  tabindex="-1"  role="dialog"  aria-labelledby="signUpModel"  aria-hidden="true">  <div class="modal-dialog modal-dialog-centered" role="document">    <div class="modal-content">      <nav>        <div class="nav nav-tabs" id="nav-tab" role="tablist">          <a            class="nav-item nav-link active tab"            id="nav-signup-tab"            data-toggle="tab"            href="#nav-signup"            role="tab"            aria-controls="nav-signup"            aria-selected="true"            #signupTab            >Sign Up</a          >          <a            class="nav-item nav-link tab"            id="nav-signin-tab"            data-toggle="tab"            href="#nav-signin"            role="tab"            aria-controls="nav-signin"            aria-selected="true"            #signinTab            >Sign In</a          >        </div>      </nav>      <div class="tab-content" id="nav-tabContent">        <div          class="tab-pane fade show active"          id="nav-signup"          role="tabpanel"          aria-labelledby="nav-signup-tab"          #signupForm        >          <div class="modal-body">            <form [formGroup]="registerForm">              <div class="form-field">                <div class="row mb-2">                  <div class="col-sm-1 col__icon">                    <fa-icon [icon]="faEnvelope"></fa-icon>                  </div>                  <div class="col-sm-11">                    <div class="form-field__control">                      <input                        type="text"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'email\'"                      />                      <label for="email" class="form-field__label">Email</label>                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        registerForm.controls[\'email\'].invalid &&                        (registerForm.controls[\'email\'].dirty ||                          registerForm.controls[\'email\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div                        *ngIf="registerForm.controls[\'email\'].errors.required"                      >                        Email field is required.                      </div>                      <div *ngIf="registerForm.controls[\'email\'].errors.email">                        Email field must be a valid email address.                      </div>                    </div>                  </div>                </div>              </div>              <div class="form-field">                <div class="row">                  <div class="col-1 col__icon">                    <fa-icon [icon]="faLock"></fa-icon>                  </div>                  <div class="col-11">                    <div class="form-field__control">                      <input                        type="password"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'password\'"                      />                      <label for="email" class="form-field__label"                        >Password</label                      >                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        registerForm.controls[\'password\'].invalid &&                        (registerForm.controls[\'password\'].dirty ||                          registerForm.controls[\'password\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div                        *ngIf="                          registerForm.controls[\'password\'].errors.required                        "                      >                        Password field is required.                      </div>                      <div                        *ngIf="                          registerForm.controls[\'password\'].errors.minlength                        "                      >                        Password field must be at least 4 characters long.                      </div>                    </div>                  </div>                </div>              </div>              <div class="form-field">                <div class="row">                  <div class="col-1 col__icon">                    <fa-icon [icon]="faLock"></fa-icon>                  </div>                  <div class="col-11">                    <div class="form-field__control">                      <input                        type="password"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'confirmedPassword\'"                      />                      <label for="email" class="form-field__label"                        >Confirm password</label                      >                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        registerForm.controls[\'confirmedPassword\'].invalid &&                        (registerForm.controls[\'confirmedPassword\'].dirty ||                          registerForm.controls[\'confirmedPassword\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div                        *ngIf="                          registerForm.controls[\'confirmedPassword\'].errors                            .required                        "                      >                        Confirmed password field is required.                      </div>                    </div>                    <div *ngIf="registerForm.invalid" class="invalid-feedback">                      <div *ngIf="registerForm.errors?.doesNotMatch">                        Confirmed password does not match with password field.                      </div>                    </div>                  </div>                </div>              </div>            </form>          </div>          <div class="modal-footer">            <button              type="button"              [disabled]="registerForm.invalid"              class="btn btn-secondary btn-block btn-lg"              (click)="signUp()"            >              Sign Up            </button>          </div>        </div>        <div          class="tab-pane fade"          id="nav-signin"          role="tabpanel"          aria-labelledby="nav-signin-tab"          #signinForm        >          <div class="modal-body">            <form [formGroup]="loginForm">              <div class="form-field">                <div class="row mb-2">                  <div class="col-1 col__icon">                    <fa-icon [icon]="faEnvelope"></fa-icon>                  </div>                  <div class="col-11">                    <div class="form-field__control">                      <input                        type="text"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'email\'"                      />                      <label for="email" class="form-field__label">Email</label>                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        loginForm.controls[\'email\'].invalid &&                        (loginForm.controls[\'email\'].dirty ||                          loginForm.controls[\'email\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div *ngIf="loginForm.controls[\'email\'].errors.required">                        Email field is required.                      </div>                      <div *ngIf="loginForm.controls[\'email\'].errors.email">                        Email field must be a valid email address.                      </div>                    </div>                  </div>                </div>              </div>              <div class="form-field">                <div class="row">                  <div class="col-1 col__icon">                    <fa-icon [icon]="faLock"></fa-icon>                  </div>                  <div class="col-11">                    <div class="form-field__control">                      <input                        type="password"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'password\'"                      />                      <label for="email" class="form-field__label"                        >Password</label                      >                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        loginForm.controls[\'password\'].invalid &&                        (loginForm.controls[\'password\'].dirty ||                          loginForm.controls[\'password\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div                        *ngIf="loginForm.controls[\'password\'].errors.required"                      >                        Password field is required.                      </div>                      <div                        *ngIf="loginForm.controls[\'password\'].errors.minlength"                      >                        Password field must be at least 4 characters long.                      </div>                    </div>                  </div>                </div>              </div>            </form>          </div>          <div class="modal-footer">            <button              type="button"              [disabled]="loginForm.invalid"              class="btn btn-secondary btn-block btn-lg"              (click)="signIn()"            >              Sign In            </button>          </div>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'}];
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand">  <button    class="mr-3"    type="button"    id="sidebarCollapse"    (click)="toggleSidenav()"    *ngIf="isAuthenticated$ | async"  >    <fa-icon class="icon-sidenav" [icon]="faBars"></fa-icon>  </button>  <a class="navbar-brand" href="#">    MyApp  </a>  <button    class="navbar-toggler"    type="button"    data-toggle="collapse"    data-target="#navbar"    aria-controls="navbar"    aria-expanded="false"    aria-label="Toggle navigation"  >    <span>      <fa-icon class="icon-burger" [icon]="faBars"></fa-icon>    </span>  </button>  <div class="collapse navbar-collapse" id="navbar">    <ul class="navbar-nav mr-auto">      <li class="nav-item">        <a          class="nav-link"          routerLink="/"          routerLinkActive="active"          [routerLinkActiveOptions]="{ exact: true }"          >Home</a        >      </li>      <li class="nav-item" *ngIf="isAuthenticated$ | async">        <a          class="nav-link"          routerLink="/dashboard"          routerLinkActive="active"          [routerLinkActiveOptions]="{ exact: true }"          >Dashboard</a        >      </li>    </ul>    <ul class="navbar-nav">      <li class="nav-item" *ngIf="!(isAuthenticated$ | async)">        <a          class="nav-link"          type="button"          data-toggle="modal"          data-target="#sign"          >Sign</a        >      </li>      <li class="nav-item" *ngIf="isAuthenticated$ | async">        <a class="nav-link" type="button" (click)="signOut()">Sign Out</a>      </li>    </ul>  </div></nav><div  #modal  class="modal fade"  id="sign"  tabindex="-1"  role="dialog"  aria-labelledby="signUpModel"  aria-hidden="true">  <div class="modal-dialog modal-dialog-centered" role="document">    <div class="modal-content">      <nav>        <div class="nav nav-tabs" id="nav-tab" role="tablist">          <a            class="nav-item nav-link active tab"            id="nav-signup-tab"            data-toggle="tab"            href="#nav-signup"            role="tab"            aria-controls="nav-signup"            aria-selected="true"            #signupTab            >Sign Up</a          >          <a            class="nav-item nav-link tab"            id="nav-signin-tab"            data-toggle="tab"            href="#nav-signin"            role="tab"            aria-controls="nav-signin"            aria-selected="true"            #signinTab            >Sign In</a          >        </div>      </nav>      <div class="tab-content" id="nav-tabContent">        <div          class="tab-pane fade show active"          id="nav-signup"          role="tabpanel"          aria-labelledby="nav-signup-tab"          #signupForm        >          <div class="modal-body">            <form [formGroup]="registerForm">              <div class="form-field">                <div class="row mb-2">                  <div class="col-sm-1 col__icon">                    <fa-icon [icon]="faEnvelope"></fa-icon>                  </div>                  <div class="col-sm-11">                    <div class="form-field__control">                      <input                        type="text"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'email\'"                      />                      <label for="email" class="form-field__label">Email</label>                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        registerForm.controls[\'email\'].invalid &&                        (registerForm.controls[\'email\'].dirty ||                          registerForm.controls[\'email\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div                        *ngIf="registerForm.controls[\'email\'].errors.required"                      >                        Email field is required.                      </div>                      <div *ngIf="registerForm.controls[\'email\'].errors.email">                        Email field must be a valid email address.                      </div>                    </div>                  </div>                </div>              </div>              <div class="form-field">                <div class="row">                  <div class="col-1 col__icon">                    <fa-icon [icon]="faLock"></fa-icon>                  </div>                  <div class="col-11">                    <div class="form-field__control">                      <input                        type="password"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'password\'"                      />                      <label for="email" class="form-field__label"                        >Password</label                      >                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        registerForm.controls[\'password\'].invalid &&                        (registerForm.controls[\'password\'].dirty ||                          registerForm.controls[\'password\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div                        *ngIf="                          registerForm.controls[\'password\'].errors.required                        "                      >                        Password field is required.                      </div>                      <div                        *ngIf="                          registerForm.controls[\'password\'].errors.minlength                        "                      >                        Password field must be at least 4 characters long.                      </div>                    </div>                  </div>                </div>              </div>              <div class="form-field">                <div class="row">                  <div class="col-1 col__icon">                    <fa-icon [icon]="faLock"></fa-icon>                  </div>                  <div class="col-11">                    <div class="form-field__control">                      <input                        type="password"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'confirmedPassword\'"                      />                      <label for="email" class="form-field__label"                        >Confirm password</label                      >                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        registerForm.controls[\'confirmedPassword\'].invalid &&                        (registerForm.controls[\'confirmedPassword\'].dirty ||                          registerForm.controls[\'confirmedPassword\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div                        *ngIf="                          registerForm.controls[\'confirmedPassword\'].errors                            .required                        "                      >                        Confirmed password field is required.                      </div>                    </div>                    <div *ngIf="registerForm.invalid" class="invalid-feedback">                      <div *ngIf="registerForm.errors?.doesNotMatch">                        Confirmed password does not match with password field.                      </div>                    </div>                  </div>                </div>              </div>            </form>          </div>          <div class="modal-footer">            <button              type="button"              [disabled]="registerForm.invalid"              class="btn btn-secondary btn-block btn-lg"              (click)="signUp()"            >              Sign Up            </button>          </div>        </div>        <div          class="tab-pane fade"          id="nav-signin"          role="tabpanel"          aria-labelledby="nav-signin-tab"          #signinForm        >          <div class="modal-body">            <form [formGroup]="loginForm">              <div class="form-field">                <div class="row mb-2">                  <div class="col-1 col__icon">                    <fa-icon [icon]="faEnvelope"></fa-icon>                  </div>                  <div class="col-11">                    <div class="form-field__control">                      <input                        type="text"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'email\'"                      />                      <label for="email" class="form-field__label">Email</label>                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        loginForm.controls[\'email\'].invalid &&                        (loginForm.controls[\'email\'].dirty ||                          loginForm.controls[\'email\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div *ngIf="loginForm.controls[\'email\'].errors.required">                        Email field is required.                      </div>                      <div *ngIf="loginForm.controls[\'email\'].errors.email">                        Email field must be a valid email address.                      </div>                    </div>                  </div>                </div>              </div>              <div class="form-field">                <div class="row">                  <div class="col-1 col__icon">                    <fa-icon [icon]="faLock"></fa-icon>                  </div>                  <div class="col-11">                    <div class="form-field__control">                      <input                        type="password"                        class="form-field__input"                        placeholder=" "                        [formControlName]="\'password\'"                      />                      <label for="email" class="form-field__label"                        >Password</label                      >                      <div class="form-field__bar"></div>                    </div>                    <div                      *ngIf="                        loginForm.controls[\'password\'].invalid &&                        (loginForm.controls[\'password\'].dirty ||                          loginForm.controls[\'password\'].touched)                      "                      class="invalid-feedback fade-in"                    >                      <div                        *ngIf="loginForm.controls[\'password\'].errors.required"                      >                        Password field is required.                      </div>                      <div                        *ngIf="loginForm.controls[\'password\'].errors.minlength"                      >                        Password field must be at least 4 characters long.                      </div>                    </div>                  </div>                </div>              </div>            </form>          </div>          <div class="modal-footer">            <button              type="button"              [disabled]="loginForm.invalid"              class="btn btn-secondary btn-block btn-lg"              (click)="signIn()"            >              Sign In            </button>          </div>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DefaultComponent', 'selector': 'app-default'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SpinnerComponent', 'selector': 'app-spinner'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
 </script>

@@ -58,7 +58,7 @@
             <h3>File</h3>
             </p>
             <p class="comment">
-                <code>src/app/services/guard/auth-guard.service.ts</code>
+                <code>src/app/shared/services/guard/auth-guard.service.ts</code>
             </p>
 
 
@@ -121,7 +121,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/services/guard/auth-guard.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/services/guard/auth-guard.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -211,7 +211,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/services/guard/auth-guard.service.ts:32</a></div>
+                            class="link-to-prism">src/app/shared/services/guard/auth-guard.service.ts:32</a></div>
                 </td>
             </tr>
 
@@ -310,7 +310,7 @@ export class AuthGuardService implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.getIsAuthenticated()) {
       return true;
     }
 

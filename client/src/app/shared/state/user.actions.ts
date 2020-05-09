@@ -3,7 +3,9 @@ import { User } from '../model/user.model';
 import { ErrorResponsePayload } from '../dto/errorResponsePayload';
 import { UserRequestPayload } from '../dto/userRequestPayload';
 import { LoginResponsePayload } from '../dto/loginResponsePayload';
-import { LogoutRequestPayload } from '../dto/logoutRequestPayload';
+import { LogoutUserRequestPayload } from '../dto/logoutUserRequestPayload';
+import { RegisterUserRequestPayload } from '../dto/registerUserRequestPayload';
+import { LoginUserRequestPayload } from '../dto/loginUserRequestPayload';
 
 export enum UserActionTypes {
   USER_SIGNUP = '[User] signup user',
@@ -24,7 +26,7 @@ export enum UserActionTypes {
 export class UserSignup implements Action {
   readonly type = UserActionTypes.USER_SIGNUP;
 
-  constructor(public payload: UserRequestPayload) {}
+  constructor(public payload: RegisterUserRequestPayload) {}
 }
 
 export class UserSignupSuccess implements Action {
@@ -42,7 +44,7 @@ export class UserSignupFail implements Action {
 export class UserSignin implements Action {
   readonly type = UserActionTypes.USER_SIGNIN;
 
-  constructor(public payload: UserRequestPayload) {}
+  constructor(public payload: LoginUserRequestPayload) {}
 }
 
 export class UserSigninSuccess implements Action {
@@ -60,7 +62,7 @@ export class UserSigninFail implements Action {
 export class UserSignout implements Action {
   readonly type = UserActionTypes.USER_SIGNOUT;
 
-  constructor(public payload: LogoutRequestPayload) {}
+  constructor(public payload: LogoutUserRequestPayload) {}
 }
 
 export class UserSignoutSuccess implements Action {

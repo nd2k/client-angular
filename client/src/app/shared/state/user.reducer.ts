@@ -3,18 +3,19 @@ import { User } from '../model/user.model';
 import { ErrorResponsePayload } from '../dto/errorResponsePayload';
 import * as fromRoot from './app-state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { UserState } from '../model/userState.model';
 
-export interface UserState {
-  user: User;
-  isAuthenticated: boolean;
-  isActive: boolean;
-  isSignup: boolean;
-  isSignin: boolean;
-  isLoading: boolean;
-  isLoaded: boolean;
-  isTokenRefreshed: boolean;
-  error: ErrorResponsePayload;
-}
+// export interface UserState {
+//   user: User;
+//   isAuthenticated: boolean;
+//   isActive: boolean;
+//   isSignup: boolean;
+//   isSignin: boolean;
+//   isLoading: boolean;
+//   isLoaded: boolean;
+//   isTokenRefreshed: boolean;
+//   error: ErrorResponsePayload;
+// }
 
 export interface AppState extends fromRoot.AppState {
   user: UserState;
@@ -107,7 +108,7 @@ export function userReducer(
         isTokenRefreshed: false,
         user: null,
         error: {
-          errorCode: action.payload.error.errorCode,
+          errorCode: action.payload.error.errorMessage,
           errorMessage: action.payload.error.errorMessage,
           httpStatus: action.payload.error.httpStatus,
         },

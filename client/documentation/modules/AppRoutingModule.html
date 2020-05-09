@@ -72,9 +72,10 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
-import { HomeComponent } from &#x27;./home/home.component&#x27;;
-import { DashboardComponent } from &#x27;./dashboard/dashboard.component&#x27;;
-import { AuthGuardService } from &#x27;./services/guard/auth-guard.service&#x27;;
+import { HomeComponent } from &#x27;./pages/home/home.component&#x27;;
+import { DashboardComponent } from &#x27;./pages/dashboard/dashboard.component&#x27;;
+import { AuthGuardService } from &#x27;./shared/services/guard/auth-guard.service&#x27;;
+import { DefaultComponent } from &#x27;./layouts/default/default.component&#x27;;
 
 /**
  * Routes object containing all the app routes
@@ -91,18 +92,25 @@ import { AuthGuardService } from &#x27;./services/guard/auth-guard.service&#x27;
 const routes: Routes &#x3D; [
   {
     path: &#x27;&#x27;,
-    component: HomeComponent,
-  },
-  {
-    path: &#x27;dashboard&#x27;,
-    component: DashboardComponent,
-    canActivate: [AuthGuardService],
+    component: DefaultComponent,
+    children: [
+      {
+        path: &#x27;&#x27;,
+        component: HomeComponent,
+      },
+      {
+        path: &#x27;dashboard&#x27;,
+        component: DashboardComponent,
+        canActivate: [AuthGuardService],
+        runGuardsAndResolvers: &#x27;always&#x27;,
+      },
+    ],
   },
   { path: &#x27;**&#x27;, redirectTo: &#x27;&#x27; },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: &#x27;reload&#x27; })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
