@@ -1,12 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidenavService } from '../../services/sidenav/sidenav.service';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
+
+declare var $: any;
 
 @Component({
   selector: 'app-sidenav',
@@ -14,7 +9,23 @@ import {
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent implements OnInit {
-  constructor() {}
+  isSidenavOpened: boolean;
 
-  ngOnInit(): void {}
+  constructor(private sidenavService: SidenavService) {}
+
+  ngOnInit(): void {
+    this.sidenavService.isSidenavOpenedCurrent$.subscribe((isSidenavOpened) => {
+      console.log(isSidenavOpened);
+      this.isSidenavOpened = isSidenavOpened;
+    });
+  }
+
+  closeSidenav(event: Event) {
+    console.log(event);
+
+    if (this.isSidenavOpened && !event.target) {
+      console.log('close outside sidenav');
+      this.sidenavService.toggleSidenav(false);
+    }
+  }
 }

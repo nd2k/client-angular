@@ -1,4 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
+import { HeaderComponent } from 'src/app/shared/components/header/header.component';
+import { HtmlElService } from 'src/app/shared/services/htmlEl/html-el.service';
 
 declare var $: any;
 
@@ -7,12 +15,17 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  @ViewChild('modal') modal: ElementRef;
+export class HomeComponent implements OnInit, AfterViewInit {
+  @ViewChild(HeaderComponent, { read: ElementRef })
+  private modal: ElementRef;
 
-  constructor() {}
+  constructor(private htmlElService: HtmlElService) {}
 
   ngOnInit(): void {}
 
-  openSignModal() {}
+  ngAfterViewInit() {}
+
+  openSignModal() {
+    $(this.htmlElService.modalElement).modal('show');
+  }
 }

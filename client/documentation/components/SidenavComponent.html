@@ -333,7 +333,7 @@ a:focus {
 }
 
 #sidebar {
-  min-height: 91.5vh;
+  min-height: calc(100vh - 60.8px);
   background-color: $primary-color;
   color: $tertiary-color;
   transition: all 0.3s;
@@ -347,7 +347,7 @@ a:focus {
 
 #sidebar ul p {
   color: #fff;
-  padding: 10px;
+  padding: 0.6rem;
 }
 
 #sidebar ul li a {
@@ -379,7 +379,7 @@ a[data-toggle&#x3D;&quot;collapse&quot;] {
   display: block;
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: 1.2rem;
   transform: translateY(-50%);
 }
 </code></pre>
@@ -412,7 +412,7 @@ a[data-toggle&#x3D;&quot;collapse&quot;] {
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="wrapper">  <!-- Sidebar -->  <nav id="sidebar">    <div class="sidebar-header">      <h5>Your Menu</h5>    </div>    <ul class="list-unstyled components">      <li class="active">        <a          href="#homeSubmenu"          data-toggle="collapse"          aria-expanded="false"          class="dropdown-toggle"          >Home</a        >        <ul class="collapse list-unstyled" id="homeSubmenu">          <li>            <a href="#">Home 1</a>          </li>          <li>            <a href="#">Home 2</a>          </li>          <li>            <a href="#">Home 3</a>          </li>        </ul>      </li>      <li>        <a href="#">About</a>      </li>      <li>        <a          href="#pageSubmenu"          data-toggle="collapse"          aria-expanded="false"          class="dropdown-toggle"          >Pages</a        >        <ul class="collapse list-unstyled" id="pageSubmenu">          <li>            <a href="#">Page 1</a>          </li>          <li>            <a href="#">Page 2</a>          </li>          <li>            <a href="#">Page 3</a>          </li>        </ul>      </li>      <li>        <a href="#">Portfolio</a>      </li>      <li>        <a href="#">Contact</a>      </li>    </ul>  </nav></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DefaultComponent', 'selector': 'app-default'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SpinnerComponent', 'selector': 'app-spinner'}];
-    var DIRECTIVES = [];
+    var DIRECTIVES = [{'name': 'HandleClickDirective', 'selector': '[appHandleClick]'}];
     var ACTUAL_COMPONENT = {'name': 'SidenavComponent'};
 </script>
 <script src="../js/tree.js"></script>

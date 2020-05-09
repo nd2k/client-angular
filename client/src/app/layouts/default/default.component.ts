@@ -37,7 +37,7 @@ export class DefaultComponent implements OnInit {
   constructor(private sidenavService: SidenavService, private store: Store) {}
 
   ngOnInit(): void {
-    this.sidenavService.isSidenavOpenedCurrent.subscribe(
+    this.sidenavService.isSidenavOpenedCurrent$.subscribe(
       (isSidenavOpened) => (this.isSidenavOpened = isSidenavOpened)
     );
 

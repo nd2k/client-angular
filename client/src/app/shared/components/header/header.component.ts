@@ -24,6 +24,7 @@ import { LogoutUserRequestPayload } from '../../dto/logoutUserRequestPayload';
 import { SidenavService } from '../../services/sidenav/sidenav.service';
 import { RegisterUserRequestPayload } from '../../dto/registerUserRequestPayload';
 import { LoginUserRequestPayload } from '../../dto/loginUserRequestPayload';
+import { HtmlElService } from '../../services/htmlEl/html-el.service';
 
 declare var $: any;
 /**
@@ -68,7 +69,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('signinTab') signinTab: ElementRef;
   @ViewChild('signupForm') signupForm: ElementRef;
   @ViewChild('signinForm') signinForm: ElementRef;
-
   @ViewChild('modal') modal: ElementRef;
 
   constructor(
@@ -76,7 +76,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private router: Router,
     private store: Store,
     private localStorageService: LocalStorageService,
-    private sidenavService: SidenavService
+    private sidenavService: SidenavService,
+    private htmlElService: HtmlElService
   ) {
     this.registerUserRequestPayload = {
       email: '',
@@ -151,7 +152,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.sidenavService.isSidenavOpenedCurrent.subscribe((isSidenavOpened) => {
+    this.sidenavService.isSidenavOpenedCurrent$.subscribe((isSidenavOpened) => {
+      console.log(isSidenavOpened);
       this.isSidenavOpened = isSidenavOpened;
     });
   }
@@ -162,7 +164,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     );
   }
 
-  ngAfterViewInit(): void {}
+  closeSidenav(event) {
+    console.log('close outside header');
+    this.sidenavService.toggleSidenav(false);
+  }
+
+  ngAfterViewInit(): void {
+    this.htmlElService.modalElement = this.modal.nativeElement;
+  }
 
   /**
    * @SignUp method

@@ -27,7 +27,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content interface">
+               <div class="content directive">
                    <div class="content-data">
 
 
@@ -35,15 +35,9 @@
 
 
 
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Interfaces</li>
-  <li>LogoutUserRequestPayload</li>
+  <li>Directives</li>
+  <li>HandleClickDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,77 +55,130 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/dto/logoutUserRequestPayload.ts</code>
+            <code>src/app/shared/directives/handleClick/handle-click.directive.ts</code>
         </p>
 
 
 
+
         <section>
-            <h3 id="index">Index</h3>
-            <table class="table table-sm table-bordered index-table">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover">
                 <tbody>
+
                     <tr>
-                        <td class="col-md-4">
-                            <h6><b>Properties</b></h6>
-                        </td>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>[appHandleClick]</code></td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                        <a href="#refreshToken">refreshToken</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
         </section>
 
 
-
             <section>
-                <h3 id="inputs">Properties</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="refreshToken"></a>
-                                        <span class="name"><b>refreshToken</b><a href="#refreshToken"><span class="icon ion-ios-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>refreshToken:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(el: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/directives/handleClick/handle-click.directive.ts:12</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>el</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
 
 
 
 
 
-                        </tbody>
-                    </table>
-            </section>
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface LogoutUserRequestPayload {
-  refreshToken: string;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Directive,
+  Output,
+  HostListener,
+  EventEmitter,
+  ElementRef,
+} from &#x27;@angular/core&#x27;;
+
+@Directive({
+  selector: &#x27;[appHandleClick]&#x27;,
+})
+export class HandleClickDirective {
+  constructor(private el: ElementRef) {
+    el.nativeElement.style.color &#x3D; &#x27;red&#x27;;
+  }
+
+  // @Output()
+  // public clickOutside &#x3D; new EventEmitter&lt;MouseEvent&gt;();
+
+  // @HostListener(&#x27;document:click&#x27;, [&#x27;$event&#x27;, &#x27;$event.target&#x27;])
+  // public onClick(event: MouseEvent, targetElement: HTMLElement): void {
+  //   if (!targetElement) {
+  //     return;
+  //   }
+
+  //   const clickedInside &#x3D; this._elementRef.nativeElement.contains(
+  //     targetElement
+  //   );
+  //   if (!clickedInside) {
+  //     this.clickOutside.emit(event);
+  //   }
+  // }
 }
 </code></pre>
     </div>
+
 </div>
+
+
+
+
+
+
 
 
                    
@@ -155,8 +202,8 @@
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'LogoutUserRequestPayload.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'HandleClickDirective.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

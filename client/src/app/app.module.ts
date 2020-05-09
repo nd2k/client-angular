@@ -20,6 +20,7 @@ import { UserEffect } from './shared/state/user.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './shared/state/custom-router-serializer';
 import { DefaultModule } from './layouts/default/default.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -53,6 +54,7 @@ import { DefaultModule } from './layouts/default/default.module';
       serializer: CustomSerializer,
     }),
     DefaultModule,
+    SharedModule,
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],

@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>SidenavService</li>
+  <li>HtmlElService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/services/sidenav/sidenav.service.ts</code>
+            <code>src/app/shared/services/htmlEl/html-el.service.ts</code>
         </p>
 
 
@@ -75,30 +75,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#isSidenavOpenedCurrent$">isSidenavOpenedCurrent$</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#isSidenavOpenedSource">isSidenavOpenedSource</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#modalElement">modalElement</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#toggleSidenav">toggleSidenav</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -119,7 +102,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/services/sidenav/sidenav.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/shared/services/htmlEl/html-el.service.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -127,82 +110,7 @@
         </table>
 </section>
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="toggleSidenav"></a>
-                    <span class="name">
-                        <b>
-                            toggleSidenav
-                        </b>
-                        <a href="#toggleSidenav"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>toggleSidenav(isSidenavOpened: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/app/shared/services/sidenav/sidenav.service.ts:13</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>isSidenavOpened</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section>
     
         <h3 id="inputs">
@@ -212,49 +120,24 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isSidenavOpenedCurrent$"></a>
+                        <a name="modalElement"></a>
                         <span class="name">
                             <b>
-                            isSidenavOpenedCurrent$</b>
-                            <a href="#isSidenavOpenedCurrent$"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Public</span>
+                            modalElement</b>
+                            <a href="#modalElement"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.isSidenavOpenedSource.asObservable()</code>
+                            <i>Type : </i>    <code>HTMLElement</code>
+
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/services/sidenav/sidenav.service.ts:9</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="isSidenavOpenedSource"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            isSidenavOpenedSource</b>
-                            <a href="#isSidenavOpenedSource"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject&lt;boolean&gt;(false)</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/shared/services/sidenav/sidenav.service.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/shared/services/htmlEl/html-el.service.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -268,20 +151,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { BehaviorSubject, Subject } from &#x27;rxjs&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
-export class SidenavService {
-  private isSidenavOpenedSource &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
-  isSidenavOpenedCurrent$ &#x3D; this.isSidenavOpenedSource.asObservable();
+export class HtmlElService {
+  public modalElement: HTMLElement;
 
   constructor() {}
-
-  toggleSidenav(isSidenavOpened: boolean) {
-    this.isSidenavOpenedSource.next(isSidenavOpened);
-  }
 }
 </code></pre>
     </div>
@@ -316,7 +193,7 @@ export class SidenavService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'SidenavService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'HtmlElService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

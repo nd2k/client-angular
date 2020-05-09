@@ -5,6 +5,7 @@
     id="sidebarCollapse"
     (click)="toggleSidenav()"
     *ngIf="isAuthenticated$ | async"
+    (clickOutside)="closeSidenav($event)"
   >
     <fa-icon class="icon-sidenav" [icon]="faBars"></fa-icon>
   </button>
@@ -351,4 +352,5 @@
       </div>
     </div>
   </div>
+  <!-- <div (appHandleClick)="closeSidenav()"></div> -->
 </div>

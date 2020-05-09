@@ -9,9 +9,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ClickOutsideDirective } from './directives/handleClick/clickOutside.directive';
 
 @NgModule({
-  declarations: [HeaderComponent, SidenavComponent, SpinnerComponent],
+  declarations: [
+    HeaderComponent,
+    SidenavComponent,
+    SpinnerComponent,
+    ClickOutsideDirective,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -21,6 +27,11 @@ import { BrowserModule } from '@angular/platform-browser';
     BrowserAnimationsModule,
     BrowserModule,
   ],
-  exports: [HeaderComponent, SidenavComponent, SpinnerComponent],
+  exports: [
+    HeaderComponent,
+    SidenavComponent,
+    SpinnerComponent,
+    ClickOutsideDirective,
+  ],
 })
 export class SharedModule {}
