@@ -1,0 +1,472 @@
+@import "../../../styles.scss";
+
+.card {
+  margin: 2rem 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.cardHeader {
+  background-color: $secondary-color;
+  height: 8rem;
+}
+
+img {
+  width: 9rem;
+  height: 9rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  margin-top: -4.5rem;
+}
+
+.card-heading {
+  margin-left: 1rem;
+  margin-top: -3rem;
+  color: $fiftary-color;
+}
+
+.card-body {
+  padding-top: 0;
+}
+
+fa-icon {
+  font-size: 1.5rem;
+  color: $fiftary-color;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.plusBtn {
+  background-color: $tertiary-color;
+  width: 1.6rem;
+  height: 1.6rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -3.5rem;
+  margin-left: -1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plusBtnIcon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.col__icon {
+  margin: auto;
+}
+$animation-duration: 0.4s;
+
+@mixin label-inactive() {
+  font-size: 1rem;
+  transform: translateY(0);
+}
+
+@mixin label-active() {
+  font-size: 0.75rem;
+  transform: translateY(-1rem);
+}
+
+.form-field {
+  display: block;
+  margin-bottom: 1rem;
+}
+.form-field__label {
+  @include label-active();
+  display: block;
+  font-weight: normal;
+  left: 0;
+  margin: 0;
+  padding-top: 1.1rem;
+  padding-left: 0.75rem;
+  position: absolute;
+  top: -0.2rem;
+  transition: all $animation-duration;
+  width: 100%;
+}
+.form-field__control {
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.form-field__bar {
+  border-bottom: 2px solid $primary-color;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  transform: scaleX(0);
+  transition: all $animation-duration;
+  width: 1%;
+}
+
+.form-field__input {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #999;
+  color: #333;
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  outline: 0;
+  padding: 0 12px 10px 12px;
+  width: 100%;
+
+  // IE 10-11
+  &:-ms-input-placeholder {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+  // All other browsers except Edge
+  &:placeholder-shown {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+  &:focus {
+    ~ .form-field__label {
+      color: $primary-color;
+      @include label-active();
+    }
+    ~ .form-field__bar {
+      border-bottom: 2px solid $primary-color;
+      transform: scaleX(150);
+    }
+  }
+}
+
+.invalid-feedback {
+  color: $danger;
+  display: block;
+  margin-left: 0.75rem;
+}
+
+.fade-in {
+  animation: fadeIn ease 0.5s;
+  -webkit-animation: fadeIn ease 0.5s;
+  -moz-animation: fadeIn ease 0.5s;
+  -o-animation: fadeIn ease 0.5s;
+  -ms-animation: fadeIn ease 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// .card .image img {
+//   display: inline-block;
+//   width: 46px;
+//   height: 46px;
+//   margin-right: 15px;
+//   vertical-align: top;
+//   border: 0;
+//   -webkit-border-radius: 50%;
+//   -moz-border-radius: 50%;
+//   border-radius: 50%;
+// }
+
+// .card {
+//   padding-top: 20px;
+//   margin: 10px 0 20px 0;
+//   background-color: rgba(214, 224, 226, 0.2);
+//   border-top-width: 0;
+//   border-bottom-width: 2px;
+//   -webkit-border-radius: 3px;
+//   -moz-border-radius: 3px;
+//   border-radius: 3px;
+//   -webkit-box-shadow: none;
+//   -moz-box-shadow: none;
+//   box-shadow: none;
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+// }
+
+// .card .card-heading {
+//   padding: 0 20px;
+//   margin: 0;
+// }
+
+// .card .card-heading.simple {
+//   font-size: 20px;
+//   font-weight: 300;
+//   color: #777;
+//   border-bottom: 1px solid #e5e5e5;
+// }
+
+// .card .card-heading.image img {
+//   display: inline-block;
+//   width: 46px;
+//   height: 46px;
+//   margin-right: 15px;
+//   vertical-align: top;
+//   border: 0;
+//   -webkit-border-radius: 50%;
+//   -moz-border-radius: 50%;
+//   border-radius: 50%;
+// }
+
+// .card .card-heading.image .card-heading-header {
+//   display: inline-block;
+//   vertical-align: top;
+// }
+
+// .card .card-heading.image .card-heading-header h3 {
+//   margin: 0;
+//   font-size: 14px;
+//   line-height: 16px;
+//   color: #262626;
+// }
+
+// .card .card-heading.image .card-heading-header span {
+//   font-size: 12px;
+//   color: #999999;
+// }
+
+// .card .card-body {
+//   padding: 0 20px;
+//   margin-top: 20px;
+// }
+
+// .card .card-media {
+//   padding: 0 20px;
+//   margin: 0 -14px;
+// }
+
+// .card .card-media img {
+//   max-width: 100%;
+//   max-height: 100%;
+// }
+
+// .card .card-actions {
+//   min-height: 30px;
+//   padding: 0 20px 20px 20px;
+//   margin: 20px 0 0 0;
+// }
+
+// .card .card-comments {
+//   padding: 20px;
+//   margin: 0;
+//   background-color: #f8f8f8;
+// }
+
+// .card .card-comments .comments-collapse-toggle {
+//   padding: 0;
+//   margin: 0 20px 12px 20px;
+// }
+
+// .card .card-comments .comments-collapse-toggle a,
+// .card .card-comments .comments-collapse-toggle span {
+//   padding-right: 5px;
+//   overflow: hidden;
+//   font-size: 12px;
+//   color: #999;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+// }
+
+// .card-comments .media-heading {
+//   font-size: 13px;
+//   font-weight: bold;
+// }
+
+// .card.people {
+//   position: relative;
+//   display: inline-block;
+//   width: 170px;
+//   height: 300px;
+//   padding-top: 0;
+//   margin-left: 20px;
+//   overflow: hidden;
+//   vertical-align: top;
+// }
+
+// .card.people:first-child {
+//   margin-left: 0;
+// }
+
+// .card.people .card-top {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   display: inline-block;
+//   width: 170px;
+//   height: 150px;
+//   background-color: #ffffff;
+// }
+
+// .card.people .card-top.green {
+//   background-color: #53a93f;
+// }
+
+// .card.people .card-top.blue {
+//   background-color: #427fed;
+// }
+
+// .card.people .card-info {
+//   position: absolute;
+//   top: 150px;
+//   display: inline-block;
+//   width: 100%;
+//   height: 101px;
+//   overflow: hidden;
+//   background: #ffffff;
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+// }
+
+// .card.people .card-info .title {
+//   display: block;
+//   margin: 8px 14px 0 14px;
+//   overflow: hidden;
+//   font-size: 16px;
+//   font-weight: bold;
+//   line-height: 18px;
+//   color: #404040;
+// }
+
+// .card.people .card-info .desc {
+//   display: block;
+//   margin: 8px 14px 0 14px;
+//   overflow: hidden;
+//   font-size: 12px;
+//   line-height: 16px;
+//   color: #737373;
+//   text-overflow: ellipsis;
+// }
+
+// .card.people .card-bottom {
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   display: inline-block;
+//   width: 100%;
+//   padding: 10px 20px;
+//   line-height: 29px;
+//   text-align: center;
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+// }
+
+// .card.hovercard {
+//   position: relative;
+//   padding-top: 0;
+//   overflow: hidden;
+//   text-align: center;
+//   background-color: rgba(214, 224, 226, 0.2);
+// }
+
+// .card.hovercard .cardheader {
+//   background-color: $secondary-color;
+//   background-size: cover;
+//   height: 135px;
+// }
+
+// .card.hovercard .avatar {
+//   position: relative;
+//   top: -50px;
+//   margin-bottom: -50px;
+// }
+
+// .card.hovercard .avatar img {
+//   width: 100px;
+//   height: 100px;
+//   max-width: 100px;
+//   max-height: 100px;
+//   -webkit-border-radius: 50%;
+//   -moz-border-radius: 50%;
+//   border-radius: 50%;
+//   border: 5px solid rgba(255, 255, 255, 0.5);
+// }
+
+// .card.hovercard .info {
+//   padding: 4px 8px 10px;
+// }
+
+// .card.hovercard .info .title {
+//   margin-bottom: 4px;
+//   font-size: 24px;
+//   line-height: 1;
+//   color: #262626;
+//   vertical-align: middle;
+// }
+
+// .card.hovercard .info .desc {
+//   overflow: hidden;
+//   font-size: 12px;
+//   line-height: 20px;
+//   color: #737373;
+//   text-overflow: ellipsis;
+// }
+
+// .card.hovercard .bottom {
+//   padding: 0 20px;
+//   margin-bottom: 17px;
+// }
+
+// .btn {
+//   border-radius: 50%;
+//   width: 32px;
+//   height: 32px;
+//   line-height: 18px;
+// }

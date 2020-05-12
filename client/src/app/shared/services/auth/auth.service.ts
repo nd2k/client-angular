@@ -11,6 +11,8 @@ import * as userActions from '../../state/user.actions';
 import { LogoutUserRequestPayload } from 'src/app/shared/dto/logoutUserRequestPayload';
 import { RegisterUserRequestPayload } from '../../dto/registerUserRequestPayload';
 import { LoginUserRequestPayload } from '../../dto/loginUserRequestPayload';
+import { EmailValidationRequestPayload } from '../../dto/emailValidationRequestPayload';
+import { EmailValidationResponsePaylaod } from '../../dto/emailValidationResponsePayload';
 
 /**
  * @AuthService
@@ -101,7 +103,7 @@ export class AuthService {
    * @RefreshToken method
    * @returns the user's information in case of success or redirect to home page in case of failure
    */
-  public refreshToken() {
+  public refreshToken(): Observable<any> {
     const refreshTokenPayload = {
       refreshToken: this.getRefreshToken(),
       email: this.getEmail(),
@@ -121,6 +123,12 @@ export class AuthService {
         })
       );
   }
+
+  /**
+   * @EmailValidation method
+   * @param emailValidationRequestPayload
+   * @returns a confirmation about the email address
+   */
 
   /**
    * @GetEmail method

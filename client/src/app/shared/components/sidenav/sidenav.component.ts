@@ -15,14 +15,11 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {
     this.sidenavService.isSidenavOpenedCurrent$.subscribe((isSidenavOpened) => {
-      console.log(isSidenavOpened);
       this.isSidenavOpened = isSidenavOpened;
     });
   }
 
   closeSidenav(event: Event) {
-    console.log(event);
-
     if (this.isSidenavOpened && !event.target) {
       console.log('close outside sidenav');
       this.sidenavService.toggleSidenav(false);

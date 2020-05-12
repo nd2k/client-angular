@@ -4,6 +4,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuardService } from './shared/services/guard/auth-guard.service';
 import { DefaultComponent } from './layouts/default/default.component';
+import { AccountValidationComponent } from './pages/accountValidation/account-validation/account-validation.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 /**
  * Routes object containing all the app routes
@@ -29,6 +31,16 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [AuthGuardService],
+        runGuardsAndResolvers: 'always',
+      },
+      {
+        path: 'accountvalidation',
+        component: AccountValidationComponent,
+      },
+      {
+        path: 'user/settings',
+        component: SettingsComponent,
         canActivate: [AuthGuardService],
         runGuardsAndResolvers: 'always',
       },

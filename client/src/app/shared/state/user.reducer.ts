@@ -1,21 +1,7 @@
 import * as userActions from './user.actions';
-import { User } from '../model/user.model';
-import { ErrorResponsePayload } from '../dto/errorResponsePayload';
 import * as fromRoot from './app-state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UserState } from '../model/userState.model';
-
-// export interface UserState {
-//   user: User;
-//   isAuthenticated: boolean;
-//   isActive: boolean;
-//   isSignup: boolean;
-//   isSignin: boolean;
-//   isLoading: boolean;
-//   isLoaded: boolean;
-//   isTokenRefreshed: boolean;
-//   error: ErrorResponsePayload;
-// }
 
 export interface AppState extends fromRoot.AppState {
   user: UserState;
@@ -51,11 +37,11 @@ export function userReducer(
         isLoaded: true,
         isSignup: true,
         user: {
-          email: action.payload.user.email,
-          authenticationToken: action.payload.user.authenticationToken,
-          refreshToken: action.payload.user.refreshToken,
-          expiresAt: action.payload.user.expiresAt,
-          message: action.payload.user.message,
+          email: action.payload.email,
+          authenticationToken: action.payload.authenticationToken,
+          refreshToken: action.payload.refreshToken,
+          expiresAt: action.payload.expiresAt,
+          message: action.payload.message,
         },
         error: null,
       };
@@ -91,11 +77,11 @@ export function userReducer(
         isActive: true,
         isTokenRefreshed: false,
         user: {
-          email: action.payload.user.email,
-          authenticationToken: action.payload.user.authenticationToken,
-          refreshToken: action.payload.user.refreshToken,
-          expiresAt: action.payload.user.expiresAt,
-          message: action.payload.user.message,
+          email: action.payload.email,
+          authenticationToken: action.payload.authenticationToken,
+          refreshToken: action.payload.refreshToken,
+          expiresAt: action.payload.expiresAt,
+          message: action.payload.message,
         },
         error: null,
       };
@@ -108,7 +94,7 @@ export function userReducer(
         isTokenRefreshed: false,
         user: null,
         error: {
-          errorCode: action.payload.error.errorMessage,
+          errorCode: action.payload.error.errorCode,
           errorMessage: action.payload.error.errorMessage,
           httpStatus: action.payload.error.httpStatus,
         },
@@ -192,6 +178,7 @@ export function userReducer(
         isAuthenticated: true,
       };
     }
+
     default: {
       return state;
     }

@@ -32,6 +32,7 @@ import { ClickOutsideDirective } from './directives/handleClick/clickOutside.dir
     SidenavComponent,
     SpinnerComponent,
     ClickOutsideDirective,
+    FontAwesomeModule,
   ],
 })
 export class SharedModule {}

@@ -6,6 +6,10 @@ import { LoginResponsePayload } from '../dto/loginResponsePayload';
 import { LogoutUserRequestPayload } from '../dto/logoutUserRequestPayload';
 import { RegisterUserRequestPayload } from '../dto/registerUserRequestPayload';
 import { LoginUserRequestPayload } from '../dto/loginUserRequestPayload';
+import { EmailValidationRequestPayload } from '../dto/emailValidationRequestPayload';
+import { EmailValidationResponsePaylaod } from '../dto/emailValidationResponsePayload';
+import { RegisterUserResponsePayload } from '../dto/registerUserResponsePayload';
+import { LoginUserResponsePayload } from '../dto/loginUserResponsePayload';
 
 export enum UserActionTypes {
   USER_SIGNUP = '[User] signup user',
@@ -21,6 +25,9 @@ export enum UserActionTypes {
   USER_REFRESHTOKEN_SUCCESS = '[User] refreshToken user success',
   USER_REFRESHTOKEN_FAIL = '[User] refreshToken user fail',
   USER_AUTHENTICATE = '[User] authenticate user from jwt',
+  USER_EMAILVALIDATION = '[User] verify user email',
+  USER_EMAILVALIDATION_SUCCESS = '[User] verify user email',
+  USER_EMAILVALIDATION_FAIL = '[User] verify user email',
 }
 
 export class UserSignup implements Action {
@@ -32,7 +39,7 @@ export class UserSignup implements Action {
 export class UserSignupSuccess implements Action {
   readonly type = UserActionTypes.USER_SIGNUP_SUCCESS;
 
-  constructor(public payload: { user: User }) {}
+  constructor(public payload: RegisterUserResponsePayload) {}
 }
 
 export class UserSignupFail implements Action {
@@ -50,7 +57,7 @@ export class UserSignin implements Action {
 export class UserSigninSuccess implements Action {
   readonly type = UserActionTypes.USER_SIGNIN_SUCCESS;
 
-  constructor(public payload: { user: User }) {}
+  constructor(public payload: LoginUserResponsePayload) {}
 }
 
 export class UserSigninFail implements Action {

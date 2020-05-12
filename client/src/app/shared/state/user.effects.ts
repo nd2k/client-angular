@@ -8,6 +8,10 @@ import * as userActions from './user.actions';
 import { User } from '../model/user.model';
 import { UserRequestPayload } from 'src/app/shared/dto/userRequestPayload';
 import { LoginResponsePayload } from '../dto/loginResponsePayload';
+import { EmailValidationResponsePaylaod } from '../dto/emailValidationResponsePayload';
+import { RegisterUserResponsePayload } from '../dto/registerUserResponsePayload';
+import { LoginUserResponsePayload } from '../dto/loginUserResponsePayload';
+import { ErrorResponsePayload } from '../dto/errorResponsePayload';
 
 @Injectable()
 export class UserEffect {
@@ -20,8 +24,11 @@ export class UserEffect {
     ofType<userActions.UserSignup>(userActions.UserActionTypes.USER_SIGNUP),
     mergeMap((action: userActions.UserSignup) =>
       this.authService.signup(action.payload).pipe(
-        map((user: User) => new userActions.UserSignupSuccess({ user })),
-        catchError((error) => of(new userActions.UserSignupFail(error)))
+        map(
+          (registerUserResponsePayload: RegisterUserResponsePayload) =>
+            new userActions.UserSignupSuccess(registerUserResponsePayload)
+        ),
+        catchError((error) => of(new userActions.UserSigninFail(error)))
       )
     )
   );
@@ -31,7 +38,10 @@ export class UserEffect {
     ofType<userActions.UserSignin>(userActions.UserActionTypes.USER_SIGNIN),
     mergeMap((action: userActions.UserSignin) =>
       this.authService.signin(action.payload).pipe(
-        map((user: User) => new userActions.UserSigninSuccess({ user })),
+        map(
+          (loginUserResponsePayload: LoginUserResponsePayload) =>
+            new userActions.UserSigninSuccess(loginUserResponsePayload)
+        ),
         catchError((error) => of(new userActions.UserSigninFail(error)))
       )
     )

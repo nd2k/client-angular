@@ -4,10 +4,15 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  Output,
 } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { faEnvelope, faLock, faBars } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEnvelope,
+  faLock,
+  faBars,
+  faCog,
+  faSignOutAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { CompareFieldsValidator } from '../../utils/compareFields';
 import { UserRequestPayload } from '../../dto/userRequestPayload';
 import { ToastrService } from 'ngx-toastr';
@@ -50,6 +55,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   faEnvelope = faEnvelope;
   faLock = faLock;
   faBars = faBars;
+  faCog = faCog;
+  faSignOutAlt = faSignOutAlt;
 
   isActive$: Observable<boolean>;
   isAuthenticated$: Observable<boolean>;
@@ -153,7 +160,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
 
     this.sidenavService.isSidenavOpenedCurrent$.subscribe((isSidenavOpened) => {
-      console.log(isSidenavOpened);
       this.isSidenavOpened = isSidenavOpened;
     });
   }
@@ -164,8 +170,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     );
   }
 
-  closeSidenav(event) {
-    console.log('close outside header');
+  closeSidenav(event: Event) {
     this.sidenavService.toggleSidenav(false);
   }
 

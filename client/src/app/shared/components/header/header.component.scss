@@ -15,6 +15,13 @@ nav {
   & .nav-item {
     font-size: 1.2rem;
   }
+  & fa-icon {
+    color: $tertiary-color;
+    padding: 0.5rem;
+  }
+  & :hover {
+    color: $sixtary-color;
+  }
 }
 
 .tab {
